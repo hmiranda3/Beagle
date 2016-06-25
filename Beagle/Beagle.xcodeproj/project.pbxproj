@@ -11,6 +11,9 @@
 		28A0100D1D1DF85C00DD1016 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A0100B1D1DF85C00DD1016 /* Main.storyboard */; };
 		28A0100F1D1DF85C00DD1016 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28A0100E1D1DF85C00DD1016 /* Assets.xcassets */; };
 		28A010121D1DF85C00DD1016 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A010101D1DF85C00DD1016 /* LaunchScreen.storyboard */; };
+		28A0101F1D1F0A5E00DD1016 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A0101E1D1F0A5E00DD1016 /* DetailTableViewController.swift */; };
+		28A010211D1F0B3700DD1016 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A010201D1F0B3700DD1016 /* ListTableViewController.swift */; };
+		28A010231D1F183F00DD1016 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A010221D1F183F00DD1016 /* FavoritesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +24,9 @@
 		28A010111D1DF85C00DD1016 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		28A010131D1DF85C00DD1016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28A010191D1DF86E00DD1016 /* Beagle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Beagle.entitlements; sourceTree = "<group>"; };
+		28A0101E1D1F0A5E00DD1016 /* DetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
+		28A010201D1F0B3700DD1016 /* ListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
+		28A010221D1F183F00DD1016 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +90,9 @@
 		28A0101C1D1DF8C000DD1016 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				28A010221D1F183F00DD1016 /* FavoritesTableViewController.swift */,
+				28A010201D1F0B3700DD1016 /* ListTableViewController.swift */,
+				28A0101E1D1F0A5E00DD1016 /* DetailTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -172,7 +181,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28A010211D1F0B3700DD1016 /* ListTableViewController.swift in Sources */,
+				28A0101F1D1F0A5E00DD1016 /* DetailTableViewController.swift in Sources */,
 				28A010081D1DF85C00DD1016 /* AppDelegate.swift in Sources */,
+				28A010231D1F183F00DD1016 /* FavoritesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +338,7 @@
 				28A010181D1DF85C00DD1016 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
