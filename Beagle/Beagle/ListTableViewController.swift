@@ -8,23 +8,67 @@
 
 import UIKit
 
-class ListTableViewController: UITableViewController {
+class ListTableViewController: UITableViewController, UIPickerViewDelegate {
+    
+    var categoryArray = ["Movies/Shows", "Books", "Food", "Travel", "Entertainment", "Art", "Music", "Games/Apps", "Lifestyle", "Health/Exercise", "Other"]
 
+    
+    // MARK: - Category Piker Outlet
+    
+    @IBOutlet var categoryPicker: UIPickerView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+    }
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    //MARK: - Category Picker Setup
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categoryArray.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categoryArray[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - IBActions
+    
+    @IBAction func newButtonTapped(sender: AnyObject) {
+        let categoryAlertController = UIAlertController(title: "Select Category", message: nil, preferredStyle: .Alert)
+        categoryAlertController.addTextFieldWithConfigurationHandler { (textfield) in
+            let categoryWheel = self.categoryPicker
+            textfield.inputView = categoryWheel
+        }
+        let createAction = UIAlertAction(title: "Add", style: .Default) { (_) in
+        self.tableView.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        categoryAlertController.addAction(createAction)
+        categoryAlertController.addAction(cancelAction)
+        presentViewController(categoryAlertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func favoritesButtonTapped(sender: AnyObject) {
+       
+    }
 
+        
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
