@@ -8,13 +8,17 @@
 
 import UIKit
 
-class DetailTableViewController: UITableViewController {
+class DetailTableViewController: UITableViewController, UIPickerViewDelegate {
+    
+    var categoryArray = ["Food", "Books", "Travel", "Movies & Shows", "Entertainment", "Arts & Crafts", "Music", "Games & Apps", "Lifestyle & Health", "Other"]
     
     var alertValue: NSDate?
     
     // MARK: - IBOutlets
 
     @IBOutlet weak var recommendationTextField: UITextField!
+    
+    @IBOutlet weak var categoryTextField: UITextField!
     
     @IBOutlet weak var recommenderTextField: UITextField!
     
@@ -24,11 +28,15 @@ class DetailTableViewController: UITableViewController {
     
     @IBOutlet var alertPicker: UIDatePicker!
     
+    @IBOutlet var categoryInputPicker: UIPickerView!
+    
+    var category: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         alertTextField.inputView = alertPicker
-        
+        categoryTextField.inputView = categoryInputPicker
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,6 +59,29 @@ class DetailTableViewController: UITableViewController {
     @IBAction func alertPickerValueChanged(sender: AnyObject) {
     }
 
+    // MARK: - Category Picker
+    
+    func numberOfComponentsInPicker(pickerView: UIPickerView!) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categoryArray.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categoryArray[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categoryTextField.text = categoryArray[row]
+    }
+//    
+//    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+//        <#code#>
+//    }
+
+    
     // MARK: - Table view data source
 
 
@@ -100,14 +131,14 @@ class DetailTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "embedLookup" {
+            if let lookupVC = segue.destinationViewController as? LookUpViewController, category = category {
+                lookupVC.category = category
+            }
+        }
     }
-    */
-
 }

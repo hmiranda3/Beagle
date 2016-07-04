@@ -9,19 +9,25 @@
 import UIKit
 import SafariServices
 
-class LookUpViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SFSafariViewControllerDelegate {
+class LookUpViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SFSafariViewControllerDelegate, LookUpTableViewCellDelegate {
     
     var bookArray = ["Amazon", "Barnes And Noble", "Border's", "Corner's", "Google"]
+    var category: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(category)
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func categorySelected(categories: Categories) {
+//        <#code#>      
     }
     
     // MARK: - Table View Set-up
@@ -62,3 +68,20 @@ class LookUpViewController: UIViewController, UITableViewDataSource, UITableView
     */
 
 }
+
+protocol LookUpTableViewCellDelegate {
+    func categorySelected(categories: Categories)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
