@@ -14,7 +14,7 @@ import CoreData
 
 extension Recommendation {
 
-    @NSManaged var recommendation: String
+    @NSManaged var title: String
     @NSManaged var category: String
     @NSManaged var recommender: String?
     @NSManaged var alert: NSDate?

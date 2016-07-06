@@ -8,60 +8,57 @@
 
 import UIKit
 
-class DetailTableViewController: UITableViewController, UIPickerViewDelegate {
+class DetailTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var categoryArray = ["Food", "Books", "Travel", "Movies & Shows", "Entertainment", "Arts & Crafts", "Music", "Games & Apps", "Lifestyle & Health", "Other"]
     
     var alertValue: NSDate?
+    var recommendation: Recommendation?
     
     // MARK: - IBOutlets
 
-    @IBOutlet weak var recommendationTextField: UITextField!
+    @IBOutlet weak var recommendationTextfield: UITextField!
+    @IBOutlet weak var categoryTextfield: UITextField!
+    @IBOutlet weak var recommenderTexfield: UITextField!
+    @IBOutlet weak var detailTextfield: UITextView!
+    @IBOutlet weak var alertTextfield: UITextField!
     
-    @IBOutlet weak var categoryTextField: UITextField!
+    // MARK: - Picker Outlets
     
-    @IBOutlet weak var recommenderTextField: UITextField!
-    
-    @IBOutlet weak var alertTextField: UITextField!
-    
-    @IBOutlet weak var detailTextView: UITextView!
-    
-    @IBOutlet var alertPicker: UIDatePicker!
-    
-    @IBOutlet var categoryInputPicker: UIPickerView!
-    
-    var category: String?
+    @IBOutlet var categoryPicker: UIPickerView!
+    @IBOutlet var datePicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        alertTextField.inputView = alertPicker
-        categoryTextField.inputView = categoryInputPicker
+        
+        categoryTextfield.inputView = categoryPicker
+        alertTextfield.inputView = datePicker
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     // MARK: - IBActions
     
-    @IBAction func addToFavoritesButtonTapped(sender: AnyObject) {
-        
+    @IBAction func datePickerValueChanged(sender: UIDatePicker) {
+        self.alertTextfield.text = sender.date.stringValue()
+        self.alertValue = sender.date
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
+        updateRecommendation()
+        navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
     }
     
-    @IBAction func alertPickerValueChanged(sender: AnyObject) {
+    @IBAction func addToFavoritesButtonTapped(sender: AnyObject) {
     }
-
+    
     // MARK: - Category Picker
     
-    func numberOfComponentsInPicker(pickerView: UIPickerView!) -> Int {
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     
@@ -74,17 +71,27 @@ class DetailTableViewController: UITableViewController, UIPickerViewDelegate {
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        categoryTextField.text = categoryArray[row]
+        categoryTextfield.text = categoryArray[row]
     }
-//    
-//    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-//        <#code#>
-//    }
-
+    
+    // MARK: - Functionality
+    
+    func updateRecommendation() {
+        guard let title = recommenderTexfield.text,
+            let category = categoryTextfield.text else { return }
+        let recommender = recommenderTexfield.text
+        let details = detailTextfield.text
+        let alert = alertValue
+        
+        if let recommendation = self.recommendation {
+            RecommendationContoller.sharedController.updateRecommendation(recommendation, title: title, category: category, recommender: recommender, details: details, alert: alert)
+        } else {
+            RecommendationContoller.sharedController.addRecommendation(title, category: category, recommender: recommender, details: details, alert: alert)
+        }
+        
+    }
     
     // MARK: - Table view data source
-
-
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -133,12 +140,34 @@ class DetailTableViewController: UITableViewController, UIPickerViewDelegate {
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "embedLookup" {
-            if let lookupVC = segue.destinationViewController as? LookUpViewController, category = category {
-                lookupVC.category = category
-            }
-        }
-    }
+//    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "embedLookup" {
+//            if let lookupVC = segue.destinationViewController as? LookUpViewController, category = category {
+//                lookupVC.category = category
+//            }
+//        }
+//    }
+    
+    
+    
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
