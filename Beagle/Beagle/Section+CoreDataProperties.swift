@@ -1,5 +1,5 @@
 //
-//  Recommendation+CoreDataProperties.swift
+//  Section+CoreDataProperties.swift
 //  Beagle
 //
 //  Created by Habib Miranda on 7/6/16.
@@ -12,12 +12,9 @@
 import Foundation
 import CoreData
 
-extension Recommendation {
+extension Section {
 
-    @NSManaged var alert: NSDate?
-    @NSManaged var details: String?
-    @NSManaged var recommender: String?
-    @NSManaged var title: String?
-    @NSManaged var section: NSManagedObject?
+    @NSManaged var group: String?
+    @NSManaged var recommendations: NSOrderedSet?
 
 }

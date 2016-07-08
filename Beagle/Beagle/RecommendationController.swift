@@ -17,21 +17,22 @@ class RecommendationContoller {
     
     init() {
         let request  = NSFetchRequest(entityName: "Recommendation")
-        let categorySortDescriptor = NSSortDescriptor(key: "category", ascending: true)
+        let categorySortDescriptor = NSSortDescriptor(key: "title", ascending: true)
         request.sortDescriptors = [categorySortDescriptor]
-        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: Stack.sharedStack.managedObjectContext, sectionNameKeyPath: "category", cacheName: nil)
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: Stack.sharedStack.managedObjectContext, sectionNameKeyPath: "Section", cacheName: nil)
         do {
             try fetchedResultsController.performFetch()
         } catch let error as NSError {
-            print("Unable to perform fetch request: \(error.localizedDescription)")
+            print("There was an error performing recommendations fetch request: \(error.localizedDescription)")
         }
         
     }
     
     // MARK: - Functionality
     
-    func addRecommendation(title: String, category: String, recommender: String?, details: String?, alert: NSDate?) {
-        let _ = Recommendation(title: title, category: category, recommender: recommender, details: details, alert: alert)
+    func addRecommendation(title: String, category: Section, recommender: String?, details: String?, alert: NSDate?) {
+        let rec = Recommendation(title: title, recommender: recommender, details: details, alert: alert)
+        rec.section = category
         saveToPersistentStorage()
     }
     
@@ -40,19 +41,17 @@ class RecommendationContoller {
         saveToPersistentStorage()
     }
     
-    func updateRecommendation(recommendation: Recommendation, title: String, category: String, recommender: String?, details: String?, alert: NSDate?) {
+    func updateRecommendation(recommendation: Recommendation, title: String, category: Section, recommender: String?, details: String?, alert: NSDate?) {
+      
         recommendation.title = title
-        recommendation.category = category
         recommendation.recommender = recommender
         recommendation.details = details
         recommendation.alert = alert
+        recommendation.section = category
         saveToPersistentStorage()
     }
     
-    func addSection(category: String) {
-        let sectionTitle = category
-    
-    }
+  
     
     // MARK: - Persistence 
     
@@ -63,5 +62,4 @@ class RecommendationContoller {
             print("There was an error saving to Managed Object Context. Items not saved.")
         }
     }
-    
 }

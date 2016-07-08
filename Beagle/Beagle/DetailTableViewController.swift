@@ -7,10 +7,9 @@
 //
 
 import UIKit
+import SafariServices
 
-class DetailTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-    
-    var categoryArray = ["Food", "Books", "Travel", "Movies & Shows", "Entertainment", "Arts & Crafts", "Music", "Games & Apps", "Lifestyle & Health", "Other"]
+class DetailTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UITextViewDelegate {
     
     var alertValue: NSDate?
     var recommendation: Recommendation?
@@ -31,9 +30,49 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let recommendation = recommendation {
+            updateWithRecommendation(recommendation)
+        }
+        
+        self.recommendationTextfield.delegate = self
+        self.categoryTextfield.delegate = self
+        self.recommenderTexfield.delegate = self
+        self.alertTextfield.delegate = self
+        self.detailTextfield.delegate = self
+        
+        
+        
+        let customView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 50))
+        customView.backgroundColor = UIColor.lightGrayColor()
+        
+        let doneButton = UIButton(frame: CGRect(x: customView.frame.width - 55, y: 0, width: 50, height: 50))
+        doneButton.setTitle("Done", forState: .Normal)
+        doneButton.addTarget(self, action: #selector(dismissPicker), forControlEvents: .TouchUpInside)
+        
+        customView.addSubview(doneButton)
+        
+        categoryTextfield.inputAccessoryView = customView
         categoryTextfield.inputView = categoryPicker
         alertTextfield.inputView = datePicker
+        alertTextfield.inputAccessoryView = customView
         
+    }
+    
+    
+    func dismissPicker() {
+        categoryTextfield.resignFirstResponder()
+        alertTextfield.resignFirstResponder()
+    }
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        self.view.endEditing(true)
+        return
     }
 
     
@@ -42,6 +81,7 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     @IBAction func datePickerValueChanged(sender: UIDatePicker) {
         self.alertTextfield.text = sender.date.stringValue()
         self.alertValue = sender.date
+//        self.view.endEditing(true)
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
@@ -56,6 +96,43 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     @IBAction func addToFavoritesButtonTapped(sender: AnyObject) {
     }
     
+    // MARK: - Look-Up Button Links
+    
+    @IBAction func googleTapped(sender: AnyObject) {
+        let url = NSURL(string: "https://google.com")!
+        let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
+        self.presentViewController(svc, animated: true, completion: nil)
+    }
+    
+    @IBAction func yelpTapped(sender: AnyObject) {
+        let url = NSURL(string: "http://m.yelp.com")!
+        let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
+        self.presentViewController(svc, animated: true, completion: nil)
+    }
+    
+    @IBAction func fundangoTapped(sender: AnyObject) {
+        let url = NSURL(string: "https://mobile.fandango.com")!
+        let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
+        self.presentViewController(svc, animated: true, completion: nil)
+    }
+   
+    @IBAction func pinterestTapped(sender: AnyObject) {
+        let url = NSURL(string: "https://www.pinterest.com")!
+        let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
+        self.presentViewController(svc, animated: true, completion: nil)
+    }
+    
+    @IBAction func amazonTapped(sender: AnyObject) {
+        let url = NSURL(string: "https://www.amazon.com/178-0768892-8234266")!
+        let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
+        self.presentViewController(svc, animated: true, completion: nil)
+    }
+    
+    @IBAction func travelocityTapped(sender: AnyObject) {
+        let url = NSURL(string: "https://www.travelocity.com/MobileHotel")!
+        let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
+        self.presentViewController(svc, animated: true, completion: nil)
+    }
     // MARK: - Category Picker
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -63,30 +140,66 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return categoryArray.count
+        return SectionController.sharedController.sectionsArray.count
+//        return categoryArray.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return categoryArray[row]
+        return SectionController.sharedController.sectionsArray[row].group
+//        return categoryArray[row]
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        categoryTextfield.text = categoryArray[row]
+        categoryTextfield.text = SectionController.sharedController.sectionsArray[row].group
     }
     
     // MARK: - Functionality
     
     func updateRecommendation() {
-        guard let title = recommenderTexfield.text,
-            let category = categoryTextfield.text else { return }
+        guard let title = recommendationTextfield.text,
+            let sectionText = categoryTextfield.text else { return }
         let recommender = recommenderTexfield.text
         let details = detailTextfield.text
         let alert = alertValue
         
-        if let recommendation = self.recommendation {
-            RecommendationContoller.sharedController.updateRecommendation(recommendation, title: title, category: category, recommender: recommender, details: details, alert: alert)
-        } else {
-            RecommendationContoller.sharedController.addRecommendation(title, category: category, recommender: recommender, details: details, alert: alert)
+        var currentSection: Section?
+        for section in SectionController.sharedController.sectionsArray {
+            if section.group == sectionText {
+                currentSection = section
+            } else {
+                currentSection = nil
+            }
+        }
+        
+        if let mySection = currentSection {
+            
+            if let recommendation = self.recommendation {
+                RecommendationContoller.sharedController.updateRecommendation(recommendation, title: title, category: mySection, recommender: recommender, details: details, alert: alert)
+            }
+        }
+        
+        //        guard let title = recommenderTexfield.text,
+        //            let category = categoryTextfield.text else { return }
+        //        let recommender = recommenderTexfield.text
+//        let details = detailTextfield.text
+//        let alert = alertValue
+//        
+//        if let recommendation = self.recommendation {
+//            RecommendationContoller.sharedController.updateRecommendation(recommendation, title: title, recommender: recommender, details: details, alert: alert)
+//        } else {
+//            RecommendationContoller.sharedController.addRecommendation(title, category: Section, recommender: recommender, details: details, alert: alert)
+//        }
+        
+    }
+    
+    func updateWithRecommendation(recommendation: Recommendation) {
+        self.recommendation = recommendation
+        
+        title = recommendation.title
+        recommenderTexfield.text = recommendation.title
+        
+        if let category = recommendation.section {
+            categoryTextfield.text = (category.valueForKey("Section") as! String)
         }
         
     }

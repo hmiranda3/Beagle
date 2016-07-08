@@ -12,10 +12,13 @@ import CoreData
 class ListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         RecommendationContoller.sharedController.fetchedResultsController.delegate = self
+        
+//        if let recommendation = recommendation {
+//            updateWithRecommendation(recommendation)
+//        }
 //        doneImage.userInteractionEnabled = true
 //        let tapGesture = UITapGestureRecognizer(target: self, action: <#T##Selector#>)
     }
@@ -39,6 +42,10 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+//    func updateWithRecommendation(recommendation: Recommendation) {
+//        title = recommendation.title
+//    }
     
     // MARK: - Actions
     
@@ -76,18 +83,22 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        guard let sections = RecommendationContoller.sharedController.fetchedResultsController.sections else {
         return 0
+        }
+        let sectionInfo = sections[section]
+        return sectionInfo.numberOfObjects
     }
     
     
      override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCellWithIdentifier("listCell", forIndexPath: indexPath)
-        guard let recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation else {
-            return UITableViewCell()
-        }
+     let cell = tableView.dequeueReusableCellWithIdentifier("listCell", forIndexPath: indexPath) as UITableViewCell
+     let recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath)
+        
+       
+        
         cell.textLabel?.text = recommendation.title
-        cell.detailTextLabel?.text = recommendation.recommender
+//        cell.detailTextLabel?.text = recommendation.recommender
         
         
         
@@ -106,7 +117,7 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
      }
      */
     
-    /*
+    
      // Override to support editing the table view.
      override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
      if editingStyle == .Delete {
@@ -116,7 +127,48 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
      // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
      }
      }
-     */
+    
+    // MARK: - NSFetchedResultsControllerDelegate
+    
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Delete:
+            guard let indexPath = indexPath else {return}
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        case .Insert:
+            guard let newIndexPath = newIndexPath else {return}
+            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Automatic)
+        case .Move:
+            guard let indexPath = indexPath,
+                newIndexPath = newIndexPath else {return}
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Automatic)
+        case .Update:
+            guard let indexPath = indexPath else {return}
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+    }
+    
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        switch type {
+        case .Delete:
+            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+        case .Insert:
+            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Automatic)
+        default:
+            break
+        }
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
+    }
+
     
     /*
      // Override to support rearranging the table view.
