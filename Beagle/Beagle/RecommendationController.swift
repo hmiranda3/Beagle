@@ -30,8 +30,8 @@ class RecommendationContoller {
     
     // MARK: - Functionality
     
-    func addRecommendation(title: String, category: Section, recommender: String?, details: String?, alert: NSDate?) {
-        let rec = Recommendation(title: title, recommender: recommender, details: details, alert: alert)
+    func addRecommendation(title: String, category: Section, recommender: String?, details: String?, alert: NSDate?, isFavorite: Bool) {
+        let rec = Recommendation(title: title, recommender: recommender, details: details, alert: alert, isFavorite: isFavorite)
         rec.section = category
         saveToPersistentStorage()
     }
@@ -41,13 +41,14 @@ class RecommendationContoller {
         saveToPersistentStorage()
     }
     
-    func updateRecommendation(recommendation: Recommendation, title: String, category: Section, recommender: String?, details: String?, alert: NSDate?) {
+    func updateRecommendation(recommendation: Recommendation, title: String, category: Section, recommender: String?, details: String?, alert: NSDate?, isFavorite: Bool) {
       
         recommendation.title = title
         recommendation.recommender = recommender
         recommendation.details = details
         recommendation.alert = alert
         recommendation.section = category
+        recommendation.isFavorite = isFavorite
         saveToPersistentStorage()
     }
     
@@ -58,6 +59,7 @@ class RecommendationContoller {
     func saveToPersistentStorage() {
         do {
             try Stack.sharedStack.managedObjectContext.save()
+            print("Success Saving!")
         } catch {
             print("There was an error saving to Managed Object Context. Items not saved.")
         }

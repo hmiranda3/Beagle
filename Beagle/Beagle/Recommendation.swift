@@ -17,8 +17,9 @@ class Recommendation: NSManagedObject {
     static let recommenderKey = "recommender"
     static let detailsKey = "details"
     static let alertKey = "alert"
+    static let isFavoriteKey = "isFavorite"
     
-    convenience init(title: String, recommender: String? = "", details: String? = "", alert: NSDate? = nil, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
+    convenience init(title: String, recommender: String? = "", details: String? = "", alert: NSDate? = nil, isFavorite: Bool, context: NSManagedObjectContext = Stack.sharedStack.managedObjectContext) {
         
         guard let entity = NSEntityDescription.entityForName("Recommendation", inManagedObjectContext: context) else {
             fatalError("Error initializing Recommendation.")
@@ -30,5 +31,7 @@ class Recommendation: NSManagedObject {
         self.recommender = recommender
         self.details = details
         self.alert = alert
+        self.isFavorite = isFavorite
+        
     }
 }

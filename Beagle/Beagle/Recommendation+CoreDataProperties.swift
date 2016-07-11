@@ -19,5 +19,6 @@ extension Recommendation {
     @NSManaged var recommender: String?
     @NSManaged var title: String?
     @NSManaged var section: NSManagedObject?
+    @NSManaged var isFavorite: Bool
 
 }

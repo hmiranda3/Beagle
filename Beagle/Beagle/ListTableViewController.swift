@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class ListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, ButtonTableViewCellDelegate {
     
     
     override func viewDidLoad() {
@@ -29,6 +29,12 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
         
     }
     
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tableView.reloadData()
+    }
     // MARK: - Category Picker Setup (Will be deleted)
     
     
@@ -63,22 +69,23 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-       let sections = RecommendationContoller.sharedController.fetchedResultsController.sections
+        let sections = RecommendationContoller.sharedController.fetchedResultsController.sections
         if sections?.count != 0 {
             return sections!.count
         } else {
-            TableViewHelper.EmptyMessage("Welcome to Beagle!\nTap on the \"Add New\" button to enter a new recommendation!", viewController: self)
+//            TableViewHelper.EmptyMessage("Welcome to Beagle!\nTap on the \"Add New\" button to enter a new recommendation!", viewController: self)
            return 0
         }
         
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let categoryInfo = RecommendationContoller.sharedController.fetchedResultsController.sections,
-            name = String?(categoryInfo[section].name) else {
-                return nil
-        }
+        let sections = SectionController.sharedController.sectionsArray
+        if let name = sections[section].group {
             return name
+        } else {
+            return ""
+        }
         
     }
     
@@ -92,18 +99,15 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
     
     
      override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCellWithIdentifier("listCell", forIndexPath: indexPath) as UITableViewCell
-     let recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath)
+     guard let cell = tableView.dequeueReusableCellWithIdentifier("listCell", forIndexPath: indexPath) as? ButtonTableViewCell,
+        let recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation else {
+            return ButtonTableViewCell()
+        }
         
-       
-        
-        cell.textLabel?.text = recommendation.title
-//        cell.detailTextLabel?.text = recommendation.recommender
-        
-        
-        
-    
-     // Configure the cell...
+     cell.updateWithRecommendation(recommendation)
+     cell.delegate = self
+     cell.recommendationTextLabel.text = recommendation.title
+     cell.recommenderTextLabel.text = recommendation.recommender
      
      return cell
      }
@@ -117,14 +121,20 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
      }
      */
     
+    func favoriteButtonTapped(sender: ButtonTableViewCell) {
+//        guard let indexPath = tableView.indexPathForCell(sender),
+//            recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation else {return}
+        
+    }
+    
     
      // Override to support editing the table view.
      override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
      if editingStyle == .Delete {
-     // Delete the row from the data source
+//        RecommendationContoller.sharedController.removeRecommendation(recommendation!)
      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
      } else if editingStyle == .Insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        
      }
      }
     
@@ -188,9 +198,9 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
     
     // MARK: - Navigation
     
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
 //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-////      let detailVC = segue.destinationViewController as! DetailTableViewController
+//      let detailVC = segue.destinationViewController as! DetailTableViewController
 //        if segue.identifier == "toDetailView" {
 //            if let detailVC = segue.destinationViewController as? DetailTableViewController, category = selectedCategory {
 //                detailVC.category = category

@@ -9,6 +9,7 @@
 import UIKit
 import SafariServices
 
+
 class DetailTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UITextViewDelegate {
     
     var alertValue: NSDate?
@@ -85,8 +86,13 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
-        updateRecommendation()
-        navigationController?.popViewControllerAnimated(true)
+        if recommendation == nil {
+            createRecommendation()
+            navigationController?.popViewControllerAnimated(true)
+        } else {
+            updateRecommendation()
+            navigationController?.popViewControllerAnimated(true)
+        }
     }
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {
@@ -155,12 +161,37 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     
     // MARK: - Functionality
     
+    func createRecommendation() {
+        guard let title = recommendationTextfield.text,
+            let sectionText = categoryTextfield.text else { return }
+        let recommender = recommenderTexfield.text
+        let details = detailTextfield.text
+        let alert = alertValue
+        let isFavorite = false
+        
+        var currentSection: Section?
+        for section in SectionController.sharedController.sectionsArray {
+            if section.group == sectionText {
+                currentSection = section
+                break
+            } else {
+                currentSection = nil
+            }
+        }
+        
+        if let mySection = currentSection {
+                RecommendationContoller.sharedController.addRecommendation(title, category: mySection, recommender: recommender, details: details, alert: alert, isFavorite: isFavorite)
+        }
+
+    }
+    
     func updateRecommendation() {
         guard let title = recommendationTextfield.text,
             let sectionText = categoryTextfield.text else { return }
         let recommender = recommenderTexfield.text
         let details = detailTextfield.text
         let alert = alertValue
+        let isFavorite = false
         
         var currentSection: Section?
         for section in SectionController.sharedController.sectionsArray {
@@ -174,22 +205,9 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         if let mySection = currentSection {
             
             if let recommendation = self.recommendation {
-                RecommendationContoller.sharedController.updateRecommendation(recommendation, title: title, category: mySection, recommender: recommender, details: details, alert: alert)
+                RecommendationContoller.sharedController.updateRecommendation(recommendation, title: title, category: mySection, recommender: recommender, details: details, alert: alert, isFavorite: isFavorite)
             }
         }
-        
-        //        guard let title = recommenderTexfield.text,
-        //            let category = categoryTextfield.text else { return }
-        //        let recommender = recommenderTexfield.text
-//        let details = detailTextfield.text
-//        let alert = alertValue
-//        
-//        if let recommendation = self.recommendation {
-//            RecommendationContoller.sharedController.updateRecommendation(recommendation, title: title, recommender: recommender, details: details, alert: alert)
-//        } else {
-//            RecommendationContoller.sharedController.addRecommendation(title, category: Section, recommender: recommender, details: details, alert: alert)
-//        }
-        
     }
     
     func updateWithRecommendation(recommendation: Recommendation) {

@@ -14,7 +14,6 @@
 		28A0101F1D1F0A5E00DD1016 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A0101E1D1F0A5E00DD1016 /* DetailTableViewController.swift */; };
 		28A010211D1F0B3700DD1016 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A010201D1F0B3700DD1016 /* ListTableViewController.swift */; };
 		28A010231D1F183F00DD1016 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A010221D1F183F00DD1016 /* FavoritesTableViewController.swift */; };
-		28BDCFB91D22E72F00575AD7 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDCFB81D22E72F00575AD7 /* ListTableViewCell.swift */; };
 		28BDCFBD1D232D6100575AD7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDCFBC1D232D6100575AD7 /* Stack.swift */; };
 		28BDCFC11D23330C00575AD7 /* Recommendation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28BDCFBF1D23330C00575AD7 /* Recommendation.xcdatamodeld */; };
 		28BDCFE71D24315000575AD7 /* Recommendation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDCFE51D24315000575AD7 /* Recommendation+CoreDataProperties.swift */; };
@@ -22,6 +21,7 @@
 		28F5F8B71D2D6F910076A730 /* Section+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F5F8B51D2D6F910076A730 /* Section+CoreDataProperties.swift */; };
 		28F5F8B81D2D6F910076A730 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F5F8B61D2D6F910076A730 /* Section.swift */; };
 		28F5F8BA1D2D7CB50076A730 /* SectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F5F8B91D2D7CB50076A730 /* SectionController.swift */; };
+		28F5F8BE1D3019E60076A730 /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F5F8BD1D3019E60076A730 /* ButtonTableViewCell.swift */; };
 		28FC03AA1D2AB03700134676 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FC03A91D2AB03700134676 /* DateHelper.swift */; };
 		28FC03AC1D2C164300134676 /* WelcomeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FC03AB1D2C164300134676 /* WelcomeMessage.swift */; };
 		28FC03AE1D2C250000134676 /* RecommendationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FC03AD1D2C250000134676 /* RecommendationController.swift */; };
@@ -38,7 +38,6 @@
 		28A0101E1D1F0A5E00DD1016 /* DetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		28A010201D1F0B3700DD1016 /* ListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		28A010221D1F183F00DD1016 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
-		28BDCFB81D22E72F00575AD7 /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		28BDCFBC1D232D6100575AD7 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		28BDCFC01D23330C00575AD7 /* Recommendation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Recommendation.xcdatamodel; sourceTree = "<group>"; };
 		28BDCFE51D24315000575AD7 /* Recommendation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Recommendation+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -46,6 +45,7 @@
 		28F5F8B51D2D6F910076A730 /* Section+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		28F5F8B61D2D6F910076A730 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		28F5F8B91D2D7CB50076A730 /* SectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionController.swift; sourceTree = "<group>"; };
+		28F5F8BD1D3019E60076A730 /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 		28FC03A91D2AB03700134676 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		28FC03AB1D2C164300134676 /* WelcomeMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeMessage.swift; sourceTree = "<group>"; };
 		28FC03AD1D2C250000134676 /* RecommendationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendationController.swift; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 		28A0101C1D1DF8C000DD1016 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				28BDCFB81D22E72F00575AD7 /* ListTableViewCell.swift */,
+				28F5F8BD1D3019E60076A730 /* ButtonTableViewCell.swift */,
 				28A010221D1F183F00DD1016 /* FavoritesTableViewController.swift */,
 				28A010201D1F0B3700DD1016 /* ListTableViewController.swift */,
 				28A0101E1D1F0A5E00DD1016 /* DetailTableViewController.swift */,
@@ -225,6 +225,7 @@
 				28BDCFE81D24315000575AD7 /* Recommendation.swift in Sources */,
 				28BDCFC11D23330C00575AD7 /* Recommendation.xcdatamodeld in Sources */,
 				28FC03AE1D2C250000134676 /* RecommendationController.swift in Sources */,
+				28F5F8BE1D3019E60076A730 /* ButtonTableViewCell.swift in Sources */,
 				28F5F8B81D2D6F910076A730 /* Section.swift in Sources */,
 				28A010211D1F0B3700DD1016 /* ListTableViewController.swift in Sources */,
 				28F5F8BA1D2D7CB50076A730 /* SectionController.swift in Sources */,
@@ -236,7 +237,6 @@
 				28A010081D1DF85C00DD1016 /* AppDelegate.swift in Sources */,
 				28A010231D1F183F00DD1016 /* FavoritesTableViewController.swift in Sources */,
 				28F5F8B71D2D6F910076A730 /* Section+CoreDataProperties.swift in Sources */,
-				28BDCFB91D22E72F00575AD7 /* ListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
