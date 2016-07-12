@@ -35,14 +35,7 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
         
         tableView.reloadData()
     }
-    // MARK: - Category Picker Setup (Will be deleted)
     
-    
-//    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-//        let text = categoryArray[row]
-//        let attributedString = NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
-//        return attributedString
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -80,8 +73,12 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sections = SectionController.sharedController.sectionsArray
-        if let name = sections[section].group {
+        guard let recommendations = RecommendationContoller.sharedController.fetchedResultsController.fetchedObjects as? [Recommendation],
+            let section = recommendations[section].section as? Section
+        
+        else { return "" }
+
+        if let name = section.group {
             return name
         } else {
             return ""
@@ -199,12 +196,17 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//      let detailVC = segue.destinationViewController as! DetailTableViewController
-//        if segue.identifier == "toDetailView" {
-//            if let detailVC = segue.destinationViewController as? DetailTableViewController, category = selectedCategory {
-//                detailVC.category = category
-//            }
-//        }
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+      let detailVC = segue.destinationViewController as! DetailTableViewController
+        if segue.identifier == "toDetailView" {
+            guard let indexPath = tableView.indexPathForSelectedRow,
+                recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation else { return }
+            detailVC.recommendation = recommendation
+        }
+    }
 }
+
+
+
+
+

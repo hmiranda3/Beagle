@@ -13,6 +13,9 @@ class SectionController {
     
     static let  sharedController = SectionController()
     
+    let fetchedResultsController: NSFetchedResultsController
+
+    
     // Fetches all sections from CoreData
     var sectionsArray: [Section] {
         let sortDescriptor = NSSortDescriptor(key: "group", ascending: true)
@@ -25,6 +28,16 @@ class SectionController {
     
     // Sets up the sections when the sharedController is called.
     init() {
+
+        let request  = NSFetchRequest(entityName: "Section")
+        let categorySortDescriptor = NSSortDescriptor(key: "group", ascending: true)
+        request.sortDescriptors = [categorySortDescriptor]
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: Stack.sharedStack.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        do {
+            try fetchedResultsController.performFetch()
+        } catch let error as NSError {
+            print("There was an error performing recommendations fetch request: \(error.localizedDescription)")
+        }
         if sectionsArray.count == 0 {
             setupSections()
         }

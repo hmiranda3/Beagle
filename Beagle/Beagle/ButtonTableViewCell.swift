@@ -19,6 +19,7 @@ class ButtonTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+//        doneButtonTapped(self)
         // Initialization code
     }
     
@@ -31,7 +32,6 @@ class ButtonTableViewCell: UITableViewCell {
     }
     
     @IBAction func favoriteButtonTapped(sender: AnyObject) {
-        
         if let delegate = delegate {
             delegate.favoriteButtonTapped(self)
         }
