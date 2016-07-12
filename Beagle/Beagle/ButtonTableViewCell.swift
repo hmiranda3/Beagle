@@ -15,6 +15,8 @@ class ButtonTableViewCell: UITableViewCell {
     @IBOutlet weak var recommenderTextLabel: UILabel!
     @IBOutlet weak var doneButton: UIButton!
     
+    var recommendation: Recommendation?
+    
     @IBOutlet weak var favoriteButton: UIButton!
     
     override func awakeFromNib() {
@@ -32,18 +34,22 @@ class ButtonTableViewCell: UITableViewCell {
     }
     
     @IBAction func favoriteButtonTapped(sender: AnyObject) {
-        if let delegate = delegate {
-            delegate.favoriteButtonTapped(self)
+        
+        RecommendationContoller.sharedController.isFavoriteValueToggle(self.recommendation!)
+        
+        if self.recommendation!.isFavorite == true {
+            favoriteButton.setImage(UIImage(named: "redheart"), forState: .Normal)
+        } else {
+            favoriteButton.setImage(UIImage(named: "emptyheart"), forState: .Normal)
         }
-
     }
     
     func updateButton(isFavorite: Bool) {
         
-        if isFavorite {
-            favoriteButton.setImage(UIImage(named: "fullblack"), forState: .Normal)
+        if isFavorite == true {
+            favoriteButton.setImage(UIImage(named: "redheart"), forState: .Normal)
         } else {
-            favoriteButton.setImage(UIImage(named: "emptyblack"), forState: .Normal)
+            favoriteButton.setImage(UIImage(named: "emptyheart"), forState: .Normal)
         }
     }
 
@@ -52,9 +58,7 @@ class ButtonTableViewCell: UITableViewCell {
         if doneButton.imageView?.image == UIImage(named: "empty") {
             doneButton.setImage(UIImage(named: "done"), forState: .Normal)
         } else {
-            if doneButton.imageView?.image == UIImage(named: "done") {
-                doneButton.setImage(UIImage(named: "empty"), forState: .Normal)
-            }
+            doneButton.setImage(UIImage(named: "empty"), forState: .Normal)
         }
     }
 }
@@ -68,6 +72,7 @@ extension ButtonTableViewCell {
     
     func updateWithRecommendation(recommendation: Recommendation) {
         
+        self.recommendation = recommendation
         recommendationTextLabel.text = recommendation.title
         recommenderTextLabel.text = recommendation.recommender
         updateButton(recommendation.isFavorite.boolValue)

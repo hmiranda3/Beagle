@@ -119,8 +119,10 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
      */
     
     func favoriteButtonTapped(sender: ButtonTableViewCell) {
-//        guard let indexPath = tableView.indexPathForCell(sender),
-//            recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation else {return}
+//        if let indexPath = tableView.indexPathForCell(sender), let recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation {
+//            
+//            recommendation.isFavorite = 
+//        }
         
     }
     

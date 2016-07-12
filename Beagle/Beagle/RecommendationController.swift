@@ -28,6 +28,22 @@ class RecommendationContoller {
         
     }
     
+    func getFavoriteRecommendations() -> [Recommendation] {
+        
+        let request = NSFetchRequest(entityName: "Recommendation")
+        let predicate = NSPredicate(format: "isFavorite == 1")
+        request.predicate = predicate
+        
+        var recommendations: [Recommendation] = []
+        do {
+            recommendations = try Stack.sharedStack.managedObjectContext.executeFetchRequest(request) as? [Recommendation] ?? []
+
+        } catch let error as NSError {
+            print("Error fetching favorited Recommendations: \(error.localizedDescription) --> \(#function)")
+        }
+        
+        return recommendations
+    }
     // MARK: - Functionality
     
     func addRecommendation(title: String, category: Section, recommender: String?, details: String?, alert: NSDate?) {
@@ -52,7 +68,13 @@ class RecommendationContoller {
     }
     
     func isFavoriteValueToggle(recommendation: Recommendation) {
-        recommendation.isFavorite = recommendation.isFavorite.boolValue
+        if recommendation.isFavorite == false {
+            recommendation.isFavorite = true
+            print(recommendation.isFavorite)
+        } else {
+            recommendation.isFavorite = false
+            print(recommendation.isFavorite)
+        }
         saveToPersistentStorage()
     }
     

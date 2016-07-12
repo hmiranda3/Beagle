@@ -29,23 +29,24 @@ class FavoritesTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return RecommendationContoller.sharedController.getFavoriteRecommendations().count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("favoriteListCell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        let recommendations = RecommendationContoller.sharedController.getFavoriteRecommendations()
+        let recommendation = recommendations[indexPath.row]
+        
+        cell.textLabel!.text = recommendation.title
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -82,14 +83,16 @@ class FavoritesTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let detailVC = segue.destinationViewController as? DetailTableViewController
+        if segue.identifier == "toDetailFromCell" {
+            guard let indexPath = tableView.indexPathForSelectedRow,
+                recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation else { return }
+            detailVC?.recommendation = recommendation
+        }
     }
-    */
-
 }
