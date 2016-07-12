@@ -30,8 +30,8 @@ class RecommendationContoller {
     
     // MARK: - Functionality
     
-    func addRecommendation(title: String, category: Section, recommender: String?, details: String?, alert: NSDate?, isFavorite: Bool) {
-        let rec = Recommendation(title: title, recommender: recommender, details: details, alert: alert, isFavorite: isFavorite)
+    func addRecommendation(title: String, category: Section, recommender: String?, details: String?, alert: NSDate?) {
+        let rec = Recommendation(title: title, recommender: recommender, details: details, alert: alert)
         rec.section = category
         saveToPersistentStorage()
     }
@@ -41,14 +41,18 @@ class RecommendationContoller {
         saveToPersistentStorage()
     }
     
-    func updateRecommendation(recommendation: Recommendation, title: String, category: Section, recommender: String?, details: String?, alert: NSDate?, isFavorite: Bool) {
+    func updateRecommendation(recommendation: Recommendation, title: String, category: Section, recommender: String?, details: String?, alert: NSDate?) {
       
         recommendation.title = title
         recommendation.recommender = recommender
         recommendation.details = details
         recommendation.alert = alert
         recommendation.section = category
-        recommendation.isFavorite = isFavorite
+        saveToPersistentStorage()
+    }
+    
+    func isFavoriteValueToggle(recommendation: Recommendation) {
+        recommendation.isFavorite = recommendation.isFavorite.boolValue
         saveToPersistentStorage()
     }
     

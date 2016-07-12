@@ -167,7 +167,6 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         let recommender = recommenderTexfield.text
         let details = detailTextfield.text
         let alert = alertValue
-        let isFavorite = false
         
         var currentSection: Section?
         for section in SectionController.sharedController.sectionsArray {
@@ -180,7 +179,7 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         }
         
         if let mySection = currentSection {
-                RecommendationContoller.sharedController.addRecommendation(title, category: mySection, recommender: recommender, details: details, alert: alert, isFavorite: isFavorite)
+                RecommendationContoller.sharedController.addRecommendation(title, category: mySection, recommender: recommender, details: details, alert: alert)
         }
 
     }
@@ -190,13 +189,12 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
             let sectionText = categoryTextfield.text else { return }
         let recommender = recommenderTexfield.text
         let details = detailTextfield.text
-        let alert = alertValue
-        let isFavorite = false
-        
+        let alert = alertValue        
         var currentSection: Section?
         for section in SectionController.sharedController.sectionsArray {
             if section.group == sectionText {
                 currentSection = section
+                break
             } else {
                 currentSection = nil
             }
@@ -205,7 +203,7 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         if let mySection = currentSection {
             
             if let recommendation = self.recommendation {
-                RecommendationContoller.sharedController.updateRecommendation(recommendation, title: title, category: mySection, recommender: recommender, details: details, alert: alert, isFavorite: isFavorite)
+                RecommendationContoller.sharedController.updateRecommendation(recommendation, title: title, category: mySection, recommender: recommender, details: details, alert: alert)
             }
         }
     }
@@ -214,10 +212,22 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         self.recommendation = recommendation
         
         title = recommendation.title
-        recommenderTexfield.text = recommendation.title
+        recommendationTextfield.text = recommendation.title!
         
-        if let category = recommendation.section {
-            categoryTextfield.text = (category.valueForKey("Section") as! String)
+        if let category = recommendation.section as? Section {
+            categoryTextfield.text = category.group!
+        }
+        
+        if let recommender = recommendation.recommender {
+            recommenderTexfield.text = recommender
+        }
+        
+        if let alert = recommendation.alert {
+            alertTextfield.text = alert.stringValue()
+        }
+        
+        if let details = recommendation.details {
+            detailTextfield.text = details
         }
         
     }

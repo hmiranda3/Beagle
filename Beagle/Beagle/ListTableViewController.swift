@@ -128,7 +128,7 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
      // Override to support editing the table view.
      override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
      if editingStyle == .Delete {
-//        RecommendationContoller.sharedController.removeRecommendation(recommendation!)
+        RecommendationContoller.sharedController.removeRecommendation(recommendation!)
      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
      } else if editingStyle == .Insert {
         
@@ -197,11 +197,11 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      let detailVC = segue.destinationViewController as! DetailTableViewController
-        if segue.identifier == "toDetailView" {
+      let detailVC = segue.destinationViewController as? DetailTableViewController
+        if segue.identifier == "toDetailFromCell" {
             guard let indexPath = tableView.indexPathForSelectedRow,
                 recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation else { return }
-            detailVC.recommendation = recommendation
+            detailVC?.recommendation = recommendation
         }
     }
 }
