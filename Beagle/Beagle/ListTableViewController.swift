@@ -62,28 +62,71 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        let sections = RecommendationContoller.sharedController.fetchedResultsController.sections
-        if sections?.count != 0 {
-            return sections!.count
-        } else {
-//            TableViewHelper.EmptyMessage("Welcome to Beagle!\nTap on the \"Add New\" button to enter a new recommendation!", viewController: self)
-           return 0
-        }
         
+        guard let sections = RecommendationContoller.sharedController.fetchedResultsController.sections else {return 1}
+        return sections.count
+        //        let sections = RecommendationContoller.sharedController.fetchedResultsController.fetchedObjects
+        
+//        let sections = RecommendationContoller.sharedController.fetchedResultsController.sections
+//        if sections?.count != 0 {
+//            return sections!.count
+//        } else {
+////            TableViewHelper.EmptyMessage("Welcome to Beagle!\nTap on the \"Add New\" button to enter a new recommendation!", viewController: self)
+//           return 0
+//        }
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let recommendations = RecommendationContoller.sharedController.fetchedResultsController.fetchedObjects as? [Recommendation],
-            let section = recommendations[section].section as? Section
         
-        else { return "" }
-
-        if let name = section.group {
-            return name
-        } else {
-            return ""
+        let recommendations = RecommendationContoller.sharedController.fetchedResultsController.sectionIndexTitles
+        
+        //TODO: See if there is a more efficient way of doing this
+        
+        if recommendations[section] == "B" {
+            return "Books"
         }
         
+        if recommendations[section] == "F" {
+            return "Food"
+        }
+        
+        if recommendations[section] == "S" {
+            return "Shows & Movies"
+        }
+        
+        if recommendations[section] == "T" {
+            return "Travel"
+        }
+        
+        if recommendations[section] == "E" {
+            return "Entertainment"
+        }
+        
+        if recommendations[section] == "A" {
+            return "Arts & Crafts"
+        }
+        
+        if recommendations[section] == "M" {
+            return "Music"
+        }
+        
+        if recommendations[section] == "G" {
+            return "Games & Apps"
+        }
+        
+        if recommendations[section] == "L" {
+            return "Lifestyle & Health"
+        }
+        
+        if recommendations[section] == "O" {
+            return "Other"
+        }
+        
+        
+
+
+        return recommendations[section]
+
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -92,6 +135,7 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
         }
         let sectionInfo = sections[section]
         return sectionInfo.numberOfObjects
+       
     }
     
     

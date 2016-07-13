@@ -30,15 +30,66 @@ class FavoritesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        let sections = RecommendationContoller.sharedController.fetchedResultsController.sections
-        if sections?.count != 0 {
-            return sections!.count
-        } else {
-            
-        return 0
-            
-        }
+        guard let sections = RecommendationContoller.sharedController.fetchedResultsController.sections else {return 1}
+        return sections.count
     }
+    
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        let recommendations = RecommendationContoller.sharedController.fetchedResultsController.sectionIndexTitles
+        
+        //TODO: See if there is a more efficient way of doing this
+        
+        if recommendations[section] == "B" {
+            return "Books"
+        }
+        
+        if recommendations[section] == "F" {
+            return "Food"
+        }
+        
+        if recommendations[section] == "S" {
+            return "Shows & Movies"
+        }
+        
+        if recommendations[section] == "T" {
+            return "Travel"
+        }
+        
+        if recommendations[section] == "E" {
+            return "Entertainment"
+        }
+        
+        if recommendations[section] == "A" {
+            return "Arts & Crafts"
+        }
+        
+        if recommendations[section] == "M" {
+            return "Music"
+        }
+        
+        if recommendations[section] == "G" {
+            return "Games & Apps"
+        }
+        
+        if recommendations[section] == "L" {
+            return "Lifestyle & Health"
+        }
+        
+        if recommendations[section] == "O" {
+            return "Other"
+        }
+        
+        
+        
+        
+        return recommendations[section]
+        
+    }
+
+    
+    
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -51,8 +102,8 @@ class FavoritesTableViewController: UITableViewController {
         let recommendations = RecommendationContoller.sharedController.getFavoriteRecommendations()
         let recommendation = recommendations[indexPath.row]
         
-        cell.textLabel!.text = recommendation.title
-
+        cell.textLabel?.text = recommendation.title
+        cell.detailTextLabel?.text = recommendation.recommender
         return cell
     }
 

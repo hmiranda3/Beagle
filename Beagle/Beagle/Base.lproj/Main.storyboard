@@ -65,7 +65,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tYA-hx-cha" id="nGh-df-auv">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="54.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9b-vm-YYQ">
@@ -374,7 +374,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHF-JT-Hle">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHF-JT-Hle">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                                     <state key="normal" title="Pinterest"/>
                                                     <connections>
@@ -386,7 +386,7 @@
                                                 <constraint firstItem="DHF-JT-Hle" firstAttribute="leading" secondItem="V5E-GN-c5A" secondAttribute="leading" id="9NS-yB-vwg"/>
                                                 <constraint firstItem="DHF-JT-Hle" firstAttribute="top" secondItem="V5E-GN-c5A" secondAttribute="top" id="FoO-yj-os8"/>
                                                 <constraint firstAttribute="trailing" secondItem="DHF-JT-Hle" secondAttribute="trailing" id="Hg2-tk-ZRw"/>
-                                                <constraint firstAttribute="bottom" secondItem="DHF-JT-Hle" secondAttribute="bottom" id="xob-Gc-Pog"/>
+                                                <constraint firstAttribute="bottom" secondItem="DHF-JT-Hle" secondAttribute="bottom" constant="21" id="xob-Gc-Pog"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -397,7 +397,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jF-3d-EOQ">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jF-3d-EOQ">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                                     <state key="normal" title="Amazon"/>
                                                     <connections>
@@ -408,7 +408,7 @@
                                             <constraints>
                                                 <constraint firstItem="5jF-3d-EOQ" firstAttribute="top" secondItem="wBW-1O-Nay" secondAttribute="top" id="5Hp-2B-pRo"/>
                                                 <constraint firstAttribute="trailing" secondItem="5jF-3d-EOQ" secondAttribute="trailing" id="Jvi-Ap-1UR"/>
-                                                <constraint firstAttribute="bottom" secondItem="5jF-3d-EOQ" secondAttribute="bottom" id="qgF-Sk-36W"/>
+                                                <constraint firstAttribute="bottom" secondItem="5jF-3d-EOQ" secondAttribute="bottom" constant="22" id="qgF-Sk-36W"/>
                                                 <constraint firstItem="5jF-3d-EOQ" firstAttribute="leading" secondItem="wBW-1O-Nay" secondAttribute="leading" id="vxZ-3j-tjb"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -420,7 +420,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUJ-hM-AOT">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUJ-hM-AOT">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                                     <state key="normal" title="Travelocity"/>
                                                     <connections>
@@ -431,7 +431,7 @@
                                             <constraints>
                                                 <constraint firstItem="OUJ-hM-AOT" firstAttribute="top" secondItem="b50-32-MVf" secondAttribute="top" id="66x-cq-IYY"/>
                                                 <constraint firstItem="OUJ-hM-AOT" firstAttribute="leading" secondItem="b50-32-MVf" secondAttribute="leading" id="9cg-0K-9nZ"/>
-                                                <constraint firstAttribute="bottom" secondItem="OUJ-hM-AOT" secondAttribute="bottom" id="a0w-4G-MO1"/>
+                                                <constraint firstAttribute="bottom" secondItem="OUJ-hM-AOT" secondAttribute="bottom" constant="20" id="a0w-4G-MO1"/>
                                                 <constraint firstAttribute="trailing" secondItem="OUJ-hM-AOT" secondAttribute="trailing" id="bVs-Dg-El7"/>
                                             </constraints>
                                         </tableViewCellContentView>

@@ -12,6 +12,8 @@ import SafariServices
 
 class DetailTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UITextViewDelegate {
     
+    var categoryArray = ["Food", "Books", "Travel", "Shows & Movies", "Entertainment", "Arts & Crafts", "Music", "Games & Apps", "Lifestyle & Health", "Other"]
+    
     var alertValue: NSDate?
     var recommendation: Recommendation?
     
@@ -146,65 +148,42 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return SectionController.sharedController.sectionsArray.count
-//        return categoryArray.count
+        return categoryArray.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return SectionController.sharedController.sectionsArray[row].group
-//        return categoryArray[row]
+        return categoryArray[row]
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        categoryTextfield.text = SectionController.sharedController.sectionsArray[row].group
+        categoryTextfield.text = categoryArray[row]
     }
     
     // MARK: - Functionality
     
     func createRecommendation() {
         guard let title = recommendationTextfield.text,
-            let sectionText = categoryTextfield.text else { return }
+            let category = categoryTextfield.text else { return }
         let recommender = recommenderTexfield.text
         let details = detailTextfield.text
         let alert = alertValue
+        let isFavorite = false
+
+        RecommendationContoller.sharedController.addRecommendation(title, category: category, recommender: recommender, details: details, alert: alert, isFavorite: isFavorite)
         
-        var currentSection: Section?
-        for section in SectionController.sharedController.sectionsArray {
-            if section.group == sectionText {
-                currentSection = section
-                break
-            } else {
-                currentSection = nil
-            }
-        }
-        
-        if let mySection = currentSection {
-                RecommendationContoller.sharedController.addRecommendation(title, category: mySection, recommender: recommender, details: details, alert: alert)
-        }
 
     }
     
     func updateRecommendation() {
         guard let title = recommendationTextfield.text,
-            let sectionText = categoryTextfield.text else { return }
+            let category = categoryTextfield.text else { return }
         let recommender = recommenderTexfield.text
         let details = detailTextfield.text
-        let alert = alertValue        
-        var currentSection: Section?
-        for section in SectionController.sharedController.sectionsArray {
-            if section.group == sectionText {
-                currentSection = section
-                break
-            } else {
-                currentSection = nil
-            }
-        }
+        let alert = alertValue
         
-        if let mySection = currentSection {
-            
-            if let recommendation = self.recommendation {
-                RecommendationContoller.sharedController.updateRecommendation(recommendation, title: title, category: mySection, recommender: recommender, details: details, alert: alert)
-            }
+        
+        if let recommendation = self.recommendation {
+            RecommendationContoller.sharedController.updateRecommendation(recommendation, title: title, category: category, recommender: recommender, details: details, alert: alert)
         }
     }
     
@@ -212,11 +191,9 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         self.recommendation = recommendation
         
         title = recommendation.title
-        recommendationTextfield.text = recommendation.title!
+        recommendationTextfield.text = recommendation.title
         
-        if let category = recommendation.section as? Section {
-            categoryTextfield.text = category.group!
-        }
+        categoryTextfield.text = recommendation.category
         
         if let recommender = recommendation.recommender {
             recommenderTexfield.text = recommender

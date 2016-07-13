@@ -14,10 +14,10 @@ class ButtonTableViewCell: UITableViewCell {
     @IBOutlet weak var recommendationTextLabel: UILabel!
     @IBOutlet weak var recommenderTextLabel: UILabel!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     var recommendation: Recommendation?
-    
-    @IBOutlet weak var favoriteButton: UIButton!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -75,7 +75,7 @@ extension ButtonTableViewCell {
         self.recommendation = recommendation
         recommendationTextLabel.text = recommendation.title
         recommenderTextLabel.text = recommendation.recommender
-        updateButton(recommendation.isFavorite.boolValue)
+        updateButton(recommendation.isFavorite!.boolValue)
 
     }
 }
