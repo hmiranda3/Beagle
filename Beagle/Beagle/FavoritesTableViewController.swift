@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class FavoritesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -28,8 +30,14 @@ class FavoritesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        let sections = RecommendationContoller.sharedController.fetchedResultsController.sections
+        if sections?.count != 0 {
+            return sections!.count
+        } else {
+            
+        return 0
+            
+        }
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,7 +97,7 @@ class FavoritesTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let detailVC = segue.destinationViewController as? DetailTableViewController
-        if segue.identifier == "toDetailFromCell" {
+        if segue.identifier == "toDetailFromFavorites" {
             guard let indexPath = tableView.indexPathForSelectedRow,
                 recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation else { return }
             detailVC?.recommendation = recommendation
