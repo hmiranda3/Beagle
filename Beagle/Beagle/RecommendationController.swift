@@ -14,6 +14,7 @@ class RecommendationContoller {
     static let sharedController = RecommendationContoller()
     
     let fetchedResultsController: NSFetchedResultsController
+    let favoriteFetchedResultsController: NSFetchedResultsController
     
     init() {
         let request  = NSFetchRequest(entityName: "Recommendation")
@@ -26,6 +27,17 @@ class RecommendationContoller {
             print("There was an error performing recommendations fetch request: \(error.localizedDescription)")
         }
         
+        let favoriteRequest  = NSFetchRequest(entityName: "Recommendation")
+        let favoriteCategorySortDescriptor = NSSortDescriptor(key: "category", ascending: true)
+        favoriteRequest.sortDescriptors = [favoriteCategorySortDescriptor]
+        let predicate = NSPredicate(format: "isFavorite == 1")
+        favoriteRequest.predicate = predicate
+        self.favoriteFetchedResultsController = NSFetchedResultsController(fetchRequest: favoriteRequest, managedObjectContext: Stack.sharedStack.managedObjectContext, sectionNameKeyPath: "category", cacheName: nil)
+        do {
+            try favoriteFetchedResultsController.performFetch()
+        } catch let error as NSError {
+            print("There was an error performing recommendations fetch request: \(error.localizedDescription)")
+        }
     }
     
     func getFavoriteRecommendations() -> [Recommendation] {
@@ -46,8 +58,8 @@ class RecommendationContoller {
     }
     // MARK: - Functionality
     
-    func addRecommendation(title: String, category: String, recommender: String?, details: String?, alert: NSDate?, isFavorite: Bool) {
-        let _ = Recommendation(title: title, recommender: recommender, details: details, alert: alert, isFavorite: isFavorite, category: category)
+    func addRecommendation(title: String, category: String, recommender: String?, details: String?, alert: NSDate?, isFavorite: Bool, isDone: Bool) {
+        let _ = Recommendation(title: title, recommender: recommender, details: details, alert: alert, isFavorite: isFavorite, category: category, isDone: isDone)
         saveToPersistentStorage()
     }
     
@@ -77,6 +89,16 @@ class RecommendationContoller {
         saveToPersistentStorage()
     }
     
+    func isDoneValueToggle(recommendation: Recommendation) {
+        if recommendation.isDone == false {
+            recommendation.isDone = true
+            print(recommendation.isDone)
+        } else {
+            recommendation.isDone = false
+            print(recommendation.isDone)
+        }
+        saveToPersistentStorage()
+    }
   
     
     // MARK: - Persistence 

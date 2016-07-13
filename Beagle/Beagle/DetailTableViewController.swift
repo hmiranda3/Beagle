@@ -168,8 +168,9 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         let details = detailTextfield.text
         let alert = alertValue
         let isFavorite = false
+        let isDone = false
 
-        RecommendationContoller.sharedController.addRecommendation(title, category: category, recommender: recommender, details: details, alert: alert, isFavorite: isFavorite)
+        RecommendationContoller.sharedController.addRecommendation(title, category: category, recommender: recommender, details: details, alert: alert, isFavorite: isFavorite, isDone: isDone)
         
 
     }

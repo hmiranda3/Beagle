@@ -14,13 +14,15 @@ class FavoritesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    var recommendation: Recommendation?
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -30,14 +32,14 @@ class FavoritesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        guard let sections = RecommendationContoller.sharedController.fetchedResultsController.sections else {return 1}
+        guard let sections = RecommendationContoller.sharedController.favoriteFetchedResultsController.sections else {return 1}
         return sections.count
     }
     
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        let recommendations = RecommendationContoller.sharedController.fetchedResultsController.sectionIndexTitles
+        let recommendations = RecommendationContoller.sharedController.favoriteFetchedResultsController.sectionIndexTitles
         
         //TODO: See if there is a more efficient way of doing this
         
@@ -88,19 +90,17 @@ class FavoritesTableViewController: UITableViewController {
         
     }
 
-    
-    
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return RecommendationContoller.sharedController.getFavoriteRecommendations().count
+        return RecommendationContoller.sharedController.favoriteFetchedResultsController.sections![section].objects!.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("favoriteListCell", forIndexPath: indexPath)
 
-        let recommendations = RecommendationContoller.sharedController.getFavoriteRecommendations()
-        let recommendation = recommendations[indexPath.row]
+        guard let recommendation = RecommendationContoller.sharedController.favoriteFetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation else { fatalError() }
+        
+       
         
         cell.textLabel?.text = recommendation.title
         cell.detailTextLabel?.text = recommendation.recommender

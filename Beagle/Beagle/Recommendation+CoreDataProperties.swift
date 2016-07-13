@@ -20,5 +20,6 @@ extension Recommendation {
     @NSManaged var recommender: String?
     @NSManaged var title: String?
     @NSManaged var category: String?
+    @NSManaged var isDone: NSNumber?
 
 }

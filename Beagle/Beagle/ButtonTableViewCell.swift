@@ -51,11 +51,23 @@ class ButtonTableViewCell: UITableViewCell {
         } else {
             favoriteButton.setImage(UIImage(named: "emptyheart"), forState: .Normal)
         }
+        
+    }
+    
+    func updateDoneButton(isDone: Bool) {
+        if isDone == true {
+            doneButton.setImage(UIImage(named: "done"), forState: .Normal)
+        } else {
+            doneButton.setImage(UIImage(named: "empty"), forState: .Normal)
+        }
     }
 
 
     @IBAction func doneButtonTapped(sender: AnyObject) {
-        if doneButton.imageView?.image == UIImage(named: "empty") {
+        
+        RecommendationContoller.sharedController.isDoneValueToggle(self.recommendation!)
+        
+        if self.recommendation?.isDone == true {
             doneButton.setImage(UIImage(named: "done"), forState: .Normal)
         } else {
             doneButton.setImage(UIImage(named: "empty"), forState: .Normal)
@@ -76,6 +88,7 @@ extension ButtonTableViewCell {
         recommendationTextLabel.text = recommendation.title
         recommenderTextLabel.text = recommendation.recommender
         updateButton(recommendation.isFavorite!.boolValue)
+        updateDoneButton(recommendation.isDone!.boolValue)
 
     }
 }
