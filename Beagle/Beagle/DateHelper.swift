@@ -13,12 +13,11 @@ extension NSDate {
     func stringValue() -> String {
         let dateFormatter = NSDateFormatter()
         
+        dateFormatter.timeZone = NSTimeZone.localTimeZone()
         dateFormatter.dateStyle = .FullStyle
         dateFormatter.timeStyle = .ShortStyle
         
         return dateFormatter.stringFromDate(self)
     }
-    
-    
     
 }

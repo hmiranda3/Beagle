@@ -59,6 +59,20 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         alertTextfield.inputView = datePicker
         alertTextfield.inputAccessoryView = customView
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DetailTableViewController.tap(_:)))
+        view.addGestureRecognizer(tapGesture)
+    
+    }
+    
+    func tap(gesture: UITapGestureRecognizer) {
+        detailTextfield.resignFirstResponder()
+    }
+
+    
+    // To dismiss detail keyboard upon touch outside.
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
     }
     
     
@@ -85,6 +99,7 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         self.alertTextfield.text = sender.date.stringValue()
         self.alertValue = sender.date
 //        self.view.endEditing(true)
+        
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
@@ -95,6 +110,16 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
             updateRecommendation()
             navigationController?.popViewControllerAnimated(true)
         }
+        
+//        let incompleteEntryAlert = UIAlertView()
+//        incompleteEntryAlert.addButtonWithTitle("Ok")
+        
+        let notification = UILocalNotification()
+        notification.fireDate = datePicker.date
+        notification.alertBody = "You have a Recommendation to look at!"
+        notification.alertAction = "Check it Out!"
+        notification.soundName = UILocalNotificationDefaultSoundName
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {

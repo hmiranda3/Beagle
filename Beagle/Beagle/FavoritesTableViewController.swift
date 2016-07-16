@@ -9,11 +9,11 @@
 import UIKit
 import CoreData
 
-class FavoritesTableViewController: UITableViewController {
+class FavoritesTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        FavoriteController.sharedController.favoriteFetchedResultsController.delegate = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -32,78 +32,38 @@ class FavoritesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        guard let sections = RecommendationContoller.sharedController.favoriteFetchedResultsController.sections else {return 1}
-        return sections.count
+
+        return 1
     }
     
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        let recommendations = RecommendationContoller.sharedController.favoriteFetchedResultsController.sectionIndexTitles
-        
-        //TODO: See if there is a more efficient way of doing this
-        
-        if recommendations[section] == "B" {
-            return "Books"
-        }
-        
-        if recommendations[section] == "F" {
-            return "Food"
-        }
-        
-        if recommendations[section] == "S" {
-            return "Shows & Movies"
-        }
-        
-        if recommendations[section] == "T" {
-            return "Travel"
-        }
-        
-        if recommendations[section] == "E" {
-            return "Entertainment"
-        }
-        
-        if recommendations[section] == "A" {
-            return "Arts & Crafts"
-        }
-        
-        if recommendations[section] == "M" {
-            return "Music"
-        }
-        
-        if recommendations[section] == "G" {
-            return "Games & Apps"
-        }
-        
-        if recommendations[section] == "L" {
-            return "Lifestyle & Health"
-        }
-        
-        if recommendations[section] == "O" {
-            return "Other"
-        }
-        
-        
-        
-        
-        return recommendations[section]
+
+        return nil
         
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return RecommendationContoller.sharedController.favoriteFetchedResultsController.sections![section].objects!.count
+        return RecommendationContoller.sharedController.getFavoriteRecommendations().count
+//        return FavoriteController.sharedController.favoriteFetchedResultsController.sections![section].objects!.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("favoriteListCell", forIndexPath: indexPath)
-
-        guard let recommendation = RecommendationContoller.sharedController.favoriteFetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation else { fatalError() }
+        let recommendations = RecommendationContoller.sharedController.getFavoriteRecommendations()
+        let recommendation = recommendations[indexPath.row]
         
-       
-        
+    
         cell.textLabel?.text = recommendation.title
         cell.detailTextLabel?.text = recommendation.recommender
+
+//        guard let recommendation = FavoriteController.sharedController.favoriteFetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation else { fatalError() }
+//        
+//       
+//        
+//        cell.textLabel?.text = recommendation.title
+//        cell.detailTextLabel?.text = recommendation.recommender
         return cell
     }
 

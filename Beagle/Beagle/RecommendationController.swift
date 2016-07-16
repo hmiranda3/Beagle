@@ -8,13 +8,15 @@
 
 import Foundation
 import CoreData
+import NotificationCenter
 
 class RecommendationContoller {
     
     static let sharedController = RecommendationContoller()
     
     let fetchedResultsController: NSFetchedResultsController
-    let favoriteFetchedResultsController: NSFetchedResultsController
+    
+    var recommendation: Recommendation?
     
     init() {
         let request  = NSFetchRequest(entityName: "Recommendation")
@@ -27,17 +29,6 @@ class RecommendationContoller {
             print("There was an error performing recommendations fetch request: \(error.localizedDescription)")
         }
         
-        let favoriteRequest  = NSFetchRequest(entityName: "Recommendation")
-        let favoriteCategorySortDescriptor = NSSortDescriptor(key: "category", ascending: true)
-        favoriteRequest.sortDescriptors = [favoriteCategorySortDescriptor]
-        let predicate = NSPredicate(format: "isFavorite == 1")
-        favoriteRequest.predicate = predicate
-        self.favoriteFetchedResultsController = NSFetchedResultsController(fetchRequest: favoriteRequest, managedObjectContext: Stack.sharedStack.managedObjectContext, sectionNameKeyPath: "category", cacheName: nil)
-        do {
-            try favoriteFetchedResultsController.performFetch()
-        } catch let error as NSError {
-            print("There was an error performing recommendations fetch request: \(error.localizedDescription)")
-        }
     }
     
     func getFavoriteRecommendations() -> [Recommendation] {
@@ -49,7 +40,7 @@ class RecommendationContoller {
         var recommendations: [Recommendation] = []
         do {
             recommendations = try Stack.sharedStack.managedObjectContext.executeFetchRequest(request) as? [Recommendation] ?? []
-
+            
         } catch let error as NSError {
             print("Error fetching favorited Recommendations: \(error.localizedDescription) --> \(#function)")
         }
@@ -69,7 +60,7 @@ class RecommendationContoller {
     }
     
     func updateRecommendation(recommendation: Recommendation, title: String, category: String, recommender: String?, details: String?, alert: NSDate?) {
-      
+        
         recommendation.title = title
         recommendation.recommender = recommender
         recommendation.details = details
@@ -99,9 +90,9 @@ class RecommendationContoller {
         }
         saveToPersistentStorage()
     }
-  
     
-    // MARK: - Persistence 
+    
+    // MARK: - Persistence
     
     func saveToPersistentStorage() {
         do {

@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Favorites Table View Controller-->
+        <!--Favorites-->
         <scene sceneID="p9Z-Ih-sWX">
             <objects>
-                <tableViewController id="tbb-X1-YBQ" customClass="FavoritesTableViewController" customModule="Beagle" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Favorites" id="tbb-X1-YBQ" customClass="FavoritesTableViewController" customModule="Beagle" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aUY-YN-YU2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -65,7 +65,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tYA-hx-cha" id="nGh-df-auv">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="54.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9b-vm-YYQ">
@@ -173,23 +173,23 @@
                             <tableViewSection headerTitle="Recommendation (Required)" id="RfX-Cz-Naq">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recommendationCell" rowHeight="44" id="IRb-5T-LmA">
-                                        <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IRb-5T-LmA" id="rLN-N9-n4O">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter recommendation here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="teU-32-5qf">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                                    <rect key="frame" x="0.0" y="-1" width="600" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="teU-32-5qf" firstAttribute="leading" secondItem="rLN-N9-n4O" secondAttribute="leading" id="1Tq-zC-i2f"/>
                                                 <constraint firstAttribute="trailing" secondItem="teU-32-5qf" secondAttribute="trailing" id="IXD-6y-CHR"/>
                                                 <constraint firstAttribute="bottom" secondItem="teU-32-5qf" secondAttribute="bottom" id="K29-dl-Jwi"/>
-                                                <constraint firstItem="teU-32-5qf" firstAttribute="top" secondItem="rLN-N9-n4O" secondAttribute="top" id="kni-jZ-x2A"/>
+                                                <constraint firstItem="teU-32-5qf" firstAttribute="top" secondItem="rLN-N9-n4O" secondAttribute="top" constant="-1" id="kni-jZ-x2A"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -198,10 +198,10 @@
                             <tableViewSection headerTitle="Category (Required)" id="63F-cm-F3N">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailsCell" rowHeight="44" id="zt7-Gw-rsC">
-                                        <rect key="frame" x="0.0" y="191" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="190.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zt7-Gw-rsC" id="faJ-G5-3vj">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select  a Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oe9-Px-Qmt">
@@ -223,20 +223,20 @@
                             <tableViewSection headerTitle="Recommender" id="Teu-Lj-BVl">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recommenderCell" id="2h0-M6-1gP">
-                                        <rect key="frame" x="0.0" y="268" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="267.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2h0-M6-1gP" id="y1X-jh-MpM">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter recommender's name here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SuE-bM-RY0">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                                    <rect key="frame" x="0.0" y="-1" width="600" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="SuE-bM-RY0" firstAttribute="top" secondItem="y1X-jh-MpM" secondAttribute="top" id="4SE-0Y-tS6"/>
+                                                <constraint firstItem="SuE-bM-RY0" firstAttribute="top" secondItem="y1X-jh-MpM" secondAttribute="top" constant="-1" id="4SE-0Y-tS6"/>
                                                 <constraint firstItem="SuE-bM-RY0" firstAttribute="leading" secondItem="y1X-jh-MpM" secondAttribute="leading" id="FlU-nQ-CpT"/>
                                                 <constraint firstAttribute="trailing" secondItem="SuE-bM-RY0" secondAttribute="trailing" id="hUh-Ir-XXV"/>
                                                 <constraint firstAttribute="bottom" secondItem="SuE-bM-RY0" secondAttribute="bottom" id="yOq-GC-DRF"/>
@@ -248,10 +248,10 @@
                             <tableViewSection headerTitle="Set Alert " id="Jsh-Iy-yr3">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="setAlertCell" id="BJC-dh-7rD">
-                                        <rect key="frame" x="0.0" y="345" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="344.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BJC-dh-7rD" id="Wbp-Xr-WFz">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select a date and time to be reminded..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bWc-tN-p8b">
@@ -273,13 +273,13 @@
                             <tableViewSection headerTitle="Details " id="8tO-kb-d4G">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailsCell" rowHeight="129" id="ax2-tQ-Vgj">
-                                        <rect key="frame" x="0.0" y="422" width="600" height="129"/>
+                                        <rect key="frame" x="0.0" y="421.5" width="600" height="129"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ax2-tQ-Vgj" id="uak-vS-BOI">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="129"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="128.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wsE-AD-4wB">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wsE-AD-4wB">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="129"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -299,10 +299,10 @@
                             <tableViewSection headerTitle="Look-Up" id="37A-oE-hfF">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailsCell" rowHeight="65" id="dA5-ch-kN2">
-                                        <rect key="frame" x="0.0" y="584" width="600" height="65"/>
+                                        <rect key="frame" x="0.0" y="583.5" width="600" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dA5-ch-kN2" id="Bz8-g6-oVA">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fm7-hV-Bf8">
@@ -322,10 +322,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailsCell" rowHeight="65" id="q56-gb-9po">
-                                        <rect key="frame" x="0.0" y="649" width="600" height="65"/>
+                                        <rect key="frame" x="0.0" y="648.5" width="600" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q56-gb-9po" id="Jhd-ue-lgH">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiP-yC-c1G">
@@ -345,10 +345,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailsCell" rowHeight="65" id="c4F-cG-z3b">
-                                        <rect key="frame" x="0.0" y="714" width="600" height="65"/>
+                                        <rect key="frame" x="0.0" y="713.5" width="600" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c4F-cG-z3b" id="62j-M2-6Wz">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xq-dP-5ez">
@@ -368,10 +368,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailsCell" rowHeight="65" id="P2a-I9-O1N">
-                                        <rect key="frame" x="0.0" y="779" width="600" height="65"/>
+                                        <rect key="frame" x="0.0" y="778.5" width="600" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P2a-I9-O1N" id="V5E-GN-c5A">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHF-JT-Hle">
@@ -391,10 +391,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailsCell" rowHeight="66" id="4HD-RF-I2H">
-                                        <rect key="frame" x="0.0" y="844" width="600" height="66"/>
+                                        <rect key="frame" x="0.0" y="843.5" width="600" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4HD-RF-I2H" id="wBW-1O-Nay">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jF-3d-EOQ">
@@ -414,10 +414,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailsCell" rowHeight="64" id="PeF-OT-6cx">
-                                        <rect key="frame" x="0.0" y="910" width="600" height="64"/>
+                                        <rect key="frame" x="0.0" y="909.5" width="600" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PeF-OT-6cx" id="b50-32-MVf">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="63.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUJ-hM-AOT">

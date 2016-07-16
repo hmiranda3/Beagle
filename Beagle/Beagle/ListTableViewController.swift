@@ -15,12 +15,7 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
     override func viewDidLoad() {
         super.viewDidLoad()
         RecommendationContoller.sharedController.fetchedResultsController.delegate = self
-        
-//        if let recommendation = recommendation {
-//            updateWithRecommendation(recommendation)
-//        }
-//        doneImage.userInteractionEnabled = true
-//        let tapGesture = UITapGestureRecognizer(target: self, action: <#T##Selector#>)
+
     }
     
     var recommendation: Recommendation?
@@ -63,24 +58,24 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        guard let sections = RecommendationContoller.sharedController.fetchedResultsController.sections else {return 1}
-        return sections.count
-        //        let sections = RecommendationContoller.sharedController.fetchedResultsController.fetchedObjects
+        let sections = RecommendationContoller.sharedController.fetchedResultsController.sections
         
-//        let sections = RecommendationContoller.sharedController.fetchedResultsController.sections
-//        if sections?.count != 0 {
-//            return sections!.count
-//        } else {
-////            TableViewHelper.EmptyMessage("Welcome to Beagle!\nTap on the \"Add New\" button to enter a new recommendation!", viewController: self)
-//           return 0
-//        }
+        if sections?.count != 0 {
+            return sections!.count
+            } else {
+            if sections?.count == 0 {
+           // TableViewHelper.EmptyMessage("Welcome to Beagle!\n \nTap on the \"Add New\" button to enter a new recommendation!", viewController: self)
+            }
+            return 0
+            
+        }
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         let recommendations = RecommendationContoller.sharedController.fetchedResultsController.sectionIndexTitles
         
-        //TODO: See if there is a more efficient way of doing this
+        //TODO: See if there is a more efficient way of doing this. Potentially a switch statement
         
         if recommendations[section] == "B" {
             return "Books"
@@ -122,8 +117,6 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
             return "Other"
         }
         
-        
-
 
         return recommendations[section]
 
@@ -154,33 +147,26 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
      }
      
     
-    /*
+    
      // Override to support conditional editing of the table view.
      override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
+        return true
      }
-     */
+    
     
     func favoriteButtonTapped(sender: ButtonTableViewCell) {
-//        if let indexPath = tableView.indexPathForCell(sender), let recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation {
-//            
-//            recommendation.isFavorite = 
-//        }
+
         
     }
     
-    
-     // Override to support editing the table view.
-     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-     if editingStyle == .Delete {
-        RecommendationContoller.sharedController.removeRecommendation(recommendation!)
-     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-     } else if editingStyle == .Insert {
-        
-     }
-     }
-    
+    // Override to support editing the table view.
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            guard let recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation else {return}
+            RecommendationContoller.sharedController.removeRecommendation(recommendation)
+        }
+    }
+
     // MARK: - NSFetchedResultsControllerDelegate
     
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
