@@ -76,49 +76,36 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
         let recommendations = RecommendationContoller.sharedController.fetchedResultsController.sectionIndexTitles
         
         //TODO: See if there is a more efficient way of doing this. Potentially a switch statement
-        
-        if recommendations[section] == "B" {
+        switch recommendations[section] {
+        case "B":
             return "Books"
-        }
-        
-        if recommendations[section] == "F" {
+        case "F":
             return "Food"
-        }
-        
-        if recommendations[section] == "S" {
+        case "S":
             return "Shows & Movies"
-        }
-        
-        if recommendations[section] == "T" {
+        case "T":
             return "Travel"
-        }
-        
-        if recommendations[section] == "E" {
+        case "E":
             return "Entertainment"
-        }
-        
-        if recommendations[section] == "A" {
+        case "A":
             return "Arts & Crafts"
-        }
-        
-        if recommendations[section] == "M" {
+        case "M":
             return "Music"
-        }
-        
-        if recommendations[section] == "G" {
+        case "G":
             return "Games & Apps"
-        }
-        
-        if recommendations[section] == "L" {
+        case "L":
             return "Lifestyle & Health"
-        }
-        
-        if recommendations[section] == "O" {
+        case "O":
             return "Other"
+        default:
+            break
         }
-        
 
-        return recommendations[section]
+        if recommendations[section].isEmpty {
+            return "No Category"
+        } else {
+            return recommendations[section]
+        }
 
     }
     

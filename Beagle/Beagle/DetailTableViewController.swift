@@ -10,7 +10,7 @@ import UIKit
 import SafariServices
 
 
-class DetailTableViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UITextViewDelegate {
+class DetailTableViewController: UITableViewController, UIPickerViewDataSource, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate {
     
     var categoryArray = ["Food", "Books", "Travel", "Shows & Movies", "Entertainment", "Arts & Crafts", "Music", "Games & Apps", "Lifestyle & Health", "Other"]
     
@@ -30,6 +30,9 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     @IBOutlet var categoryPicker: UIPickerView!
     @IBOutlet var datePicker: UIDatePicker!
     
+    let imagePicker = UIImagePickerController()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,6 +45,7 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         self.recommenderTexfield.delegate = self
         self.alertTextfield.delegate = self
         self.detailTextfield.delegate = self
+        self.imagePicker.delegate = self
         
         
         
@@ -61,7 +65,49 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DetailTableViewController.tap(_:)))
         view.addGestureRecognizer(tapGesture)
+        
+        
+        //Detail image input
+        
+        let detailCustomView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 50))
+        detailCustomView.backgroundColor = UIColor.lightGrayColor()
+        
+        let addImageButton = UIButton(frame: CGRect(x: detailCustomView.frame.width - 105, y: 0, width: 100, height: 50))
+        addImageButton.setTitle("Add Image", forState: .Normal)
+        addImageButton.addTarget(self, action: #selector(addImageAction), forControlEvents: .TouchUpInside)
+        
+        detailCustomView.addSubview(addImageButton)
+        detailTextfield.inputAccessoryView = detailCustomView
+        
+        
+        
+        
     
+    }
+    
+    func emptyTextfieldAlert() {
+        
+        if (recommendationTextfield.text!.isEmpty) {
+            let alert = UIAlertController()
+            alert.title = "Your recommendation needs a title!"
+            alert.message = "Please fill out the \"Recommendation\" text field in order to create a new entry. Otherwise select cancel."
+            let okAction = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            alert.addAction(okAction)
+            presentViewController(alert, animated: true, completion: nil)
+        }
+        
+        
+        
+        if (categoryTextfield.text!.isEmpty) {
+            let alert = UIAlertController()
+            alert.title = "Please select a category!"
+            alert.message = "In order to organize your entries, you'll need a category! If you are unsure of the category, select \"Other\"."
+            let okAction = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            alert.addAction(okAction)
+            presentViewController(alert, animated: true, completion: nil)
+        }
+
+
     }
     
     func tap(gesture: UITapGestureRecognizer) {
@@ -98,21 +144,20 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     @IBAction func datePickerValueChanged(sender: UIDatePicker) {
         self.alertTextfield.text = sender.date.stringValue()
         self.alertValue = sender.date
-//        self.view.endEditing(true)
         
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
-        if recommendation == nil {
+        emptyTextfieldAlert()
+        if recommendation == nil && recommendationTextfield.text != "" && categoryTextfield.text != "" {
+            emptyTextfieldAlert()
             createRecommendation()
             navigationController?.popViewControllerAnimated(true)
-        } else {
+        } else if recommendationTextfield.text != "" && categoryTextfield.text != "" {
+            emptyTextfieldAlert()
             updateRecommendation()
             navigationController?.popViewControllerAnimated(true)
         }
-        
-//        let incompleteEntryAlert = UIAlertView()
-//        incompleteEntryAlert.addButtonWithTitle("Ok")
         
         let notification = UILocalNotification()
         notification.fireDate = datePicker.date
@@ -126,8 +171,6 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         navigationController?.popViewControllerAnimated(true)
     }
     
-    @IBAction func addToFavoritesButtonTapped(sender: AnyObject) {
-    }
     
     // MARK: - Look-Up Button Links
     
@@ -190,7 +233,7 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         guard let title = recommendationTextfield.text,
             let category = categoryTextfield.text else { return }
         let recommender = recommenderTexfield.text
-        let details = detailTextfield.text
+        let details = detailTextfield.attributedText
         let alert = alertValue
         let isFavorite = false
         let isDone = false
@@ -204,7 +247,7 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         guard let title = recommendationTextfield.text,
             let category = categoryTextfield.text else { return }
         let recommender = recommenderTexfield.text
-        let details = detailTextfield.text
+        let details = detailTextfield.attributedText
         let alert = alertValue
         
         
@@ -229,74 +272,98 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
             alertTextfield.text = alert.stringValue()
         }
         
-        if let details = recommendation.details {
-            detailTextfield.text = details
-        }
+//        if let details = recommendation.details {
+//            
+//            if let attrString = details as? NSAttributedString {
+//                attrString.enumerateAttribute(NSAttachmentAttributeName, inRange: NSMakeRange(0, attrString.length), options: [], usingBlock: { (value, range, bool) in
+////                    if ((value?.isKindOfClass(NSTextAttachment)) != nil) {
+////                        if let attachment = value as? NSTextAttachment {
+////                            if let image = attachment.image {
+////                                let oldWidth = image.size.width
+//                                
+////                                let scaleFactor = oldWidth / (self.detailTextfield.frame.size.width - 10)
+////                                let formattedImage = UIImage(CGImage: image.CGImage!, scale: scaleFactor, orientation: UIImageOrientation.Up)
+//                                
+//                                
+////                            }
+////                        }
+////                    }
+//                })
+//            }
+//            print("------------------------------------------------\(details)")
+//            if let stringDictionary = details as? [NSObject : AnyObject] {
+//                print("THIS IS THE DETAILS TEXT: ----->> \(stringDictionary["NSAttachment"])")
+//            }
+//            detailTextfield.attributedText = details as! NSAttributedString
+//        }
+    }
+    
+    //MARK: - Detail Text Field Functionality:
+    
+    func addImageToDetailText() {
+//        let attributedString = NSMutableAttributedString(string: "before after")
+//        let textAttachment = NSTextAttachment()
+        
+//        let customView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 50))
+//        customView.backgroundColor = UIColor.lightGrayColor()
+//        
+//        let addImageButton = UIButton(frame: CGRect(x: customView.frame.width - 55, y: 0, width: 50, height: 50))
+//        addImageButton.setTitle("Add Image", forState: .Normal)
+//        addImageButton.addTarget(self, action: #selector(addImageAction), forControlEvents: .TouchUpInside)
+//        
+//        customView.addSubview(addImageButton)
+//        detailTextfield.inputAccessoryView = customView
+        
+        
+//        let scaleFactor = (detailTextfield.frame.size.width - 10)
+//        textAttachment.image = UIImage(CGImage: textAttachment.image!.CGImage!, scale: scaleFactor, orientation: .Up)
+//        let attrStringWithImage = NSAttributedString(attachment: textAttachment)
+//        attributedString.replaceCharactersInRange(NSMakeRange(6, 1), withAttributedString: attrStringWithImage)
+//        detailTextfield.attributedText = attributedString
+//        self.view.addSubview(detailTextfield)
         
     }
     
-    // MARK: - Table view data source
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    // MARK: - Navigation
-
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "embedLookup" {
-//            if let lookupVC = segue.destinationViewController as? LookUpViewController, category = category {
-//                lookupVC.category = category
-//            }
+    func addImageAction() {
+//        let alert = UIAlertController(title: "Select Photo Location", message: nil, preferredStyle: .ActionSheet)
+        
+//        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
+//            alert.addAction(UIAlertAction(title: "Photo Library", style: .Default, handler: { (_) -> Void in
+//                self.imagePicker.sourceType = .PhotoLibrary
+//                self.presentViewController(self.imagePicker, animated: true, completion: nil)
+//            }))
 //        }
-//    }
+//        
+//        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+//            alert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (_) -> Void in
+//                self.imagePicker.sourceType = .Camera
+//                self.presentViewController(self.imagePicker, animated: true, completion: nil)
+//            }))
+//        }
+//        
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+//        
+//        presentViewController(alert, animated: true, completion: nil)
+//        
+    }
     
-    
-    
-
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+//        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+//            let attributedString = NSMutableAttributedString(string: detailTextfield.text)
+//            let textAttachment = NSTextAttachment()
+//            let oldWidth = image.size.width;
+//            
+//            let scaleFactor = oldWidth / (detailTextfield.frame.size.width - 100);
+//            textAttachment.image = UIImage(CGImage: image.CGImage!, scale: scaleFactor, orientation: UIImageOrientation.Up)
+//            let attrStringWithImage = NSAttributedString(attachment: textAttachment)
+//            attributedString.appendAttributedString(attrStringWithImage)
+//            detailTextfield.attributedText = attributedString
+//        }
+    }
 }
+
+
 
 
 

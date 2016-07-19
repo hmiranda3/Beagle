@@ -49,8 +49,14 @@ class RecommendationContoller {
     }
     // MARK: - Functionality
     
-    func addRecommendation(title: String, category: String, recommender: String?, details: String?, alert: NSDate?, isFavorite: Bool, isDone: Bool) {
-        let _ = Recommendation(title: title, recommender: recommender, details: details, alert: alert, isFavorite: isFavorite, category: category, isDone: isDone)
+    func addRecommendation(title: String, category: String, recommender: String?, details: NSAttributedString?, alert: NSDate?, isFavorite: Bool, isDone: Bool) {
+        let recommendation = Recommendation(title: title, recommender: recommender, details: details, alert: alert, isFavorite: isFavorite, category: category, isDone: isDone)
+        if (recommendation.category == "") {
+            
+            print("no category")
+            return recommendation.category = "Other"
+        }
+
         saveToPersistentStorage()
     }
     
@@ -59,7 +65,7 @@ class RecommendationContoller {
         saveToPersistentStorage()
     }
     
-    func updateRecommendation(recommendation: Recommendation, title: String, category: String, recommender: String?, details: String?, alert: NSDate?) {
+    func updateRecommendation(recommendation: Recommendation, title: String, category: String, recommender: String?, details: NSAttributedString?, alert: NSDate?) {
         
         recommendation.title = title
         recommendation.recommender = recommender

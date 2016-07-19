@@ -14,10 +14,11 @@
 		28A0101F1D1F0A5E00DD1016 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A0101E1D1F0A5E00DD1016 /* DetailTableViewController.swift */; };
 		28A010211D1F0B3700DD1016 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A010201D1F0B3700DD1016 /* ListTableViewController.swift */; };
 		28A010231D1F183F00DD1016 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A010221D1F183F00DD1016 /* FavoritesTableViewController.swift */; };
+		28A87EE41D3D54E600C81F99 /* Recommendation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A87EE31D3D54E600C81F99 /* Recommendation+CoreDataProperties.swift */; };
+		28A87EE61D3D7F9B00C81F99 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A87EE51D3D7F9B00C81F99 /* CloudKitManager.swift */; };
 		28BC25F91D36FC8700F76579 /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BC25F81D36FC8700F76579 /* FavoriteController.swift */; };
 		28BDCFBD1D232D6100575AD7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDCFBC1D232D6100575AD7 /* Stack.swift */; };
 		28BDCFC11D23330C00575AD7 /* Recommendation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28BDCFBF1D23330C00575AD7 /* Recommendation.xcdatamodeld */; };
-		28BDCFE71D24315000575AD7 /* Recommendation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDCFE51D24315000575AD7 /* Recommendation+CoreDataProperties.swift */; };
 		28BDCFE81D24315000575AD7 /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDCFE61D24315000575AD7 /* Recommendation.swift */; };
 		28F5F8BE1D3019E60076A730 /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F5F8BD1D3019E60076A730 /* ButtonTableViewCell.swift */; };
 		28FC03AA1D2AB03700134676 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FC03A91D2AB03700134676 /* DateHelper.swift */; };
@@ -36,10 +37,11 @@
 		28A0101E1D1F0A5E00DD1016 /* DetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		28A010201D1F0B3700DD1016 /* ListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		28A010221D1F183F00DD1016 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		28A87EE31D3D54E600C81F99 /* Recommendation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Recommendation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		28A87EE51D3D7F9B00C81F99 /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		28BC25F81D36FC8700F76579 /* FavoriteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteController.swift; path = ../FavoriteController.swift; sourceTree = "<group>"; };
 		28BDCFBC1D232D6100575AD7 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		28BDCFC01D23330C00575AD7 /* Recommendation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Recommendation.xcdatamodel; sourceTree = "<group>"; };
-		28BDCFE51D24315000575AD7 /* Recommendation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Recommendation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		28BDCFE61D24315000575AD7 /* Recommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
 		28F5F8BD1D3019E60076A730 /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 		28FC03A91D2AB03700134676 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
@@ -94,11 +96,12 @@
 		28A0101A1D1DF8AC00DD1016 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				28A87EE31D3D54E600C81F99 /* Recommendation+CoreDataProperties.swift */,
 				28FC03AB1D2C164300134676 /* WelcomeMessage.swift */,
 				28BDCFBF1D23330C00575AD7 /* Recommendation.xcdatamodeld */,
-				28BDCFE51D24315000575AD7 /* Recommendation+CoreDataProperties.swift */,
 				28BDCFE61D24315000575AD7 /* Recommendation.swift */,
 				28FC03A91D2AB03700134676 /* DateHelper.swift */,
+				28A87EE51D3D7F9B00C81F99 /* CloudKitManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -220,11 +223,12 @@
 				28BDCFC11D23330C00575AD7 /* Recommendation.xcdatamodeld in Sources */,
 				28FC03AE1D2C250000134676 /* RecommendationController.swift in Sources */,
 				28F5F8BE1D3019E60076A730 /* ButtonTableViewCell.swift in Sources */,
+				28A87EE61D3D7F9B00C81F99 /* CloudKitManager.swift in Sources */,
 				28BC25F91D36FC8700F76579 /* FavoriteController.swift in Sources */,
 				28A010211D1F0B3700DD1016 /* ListTableViewController.swift in Sources */,
-				28BDCFE71D24315000575AD7 /* Recommendation+CoreDataProperties.swift in Sources */,
 				28FC03AC1D2C164300134676 /* WelcomeMessage.swift in Sources */,
 				28BDCFBD1D232D6100575AD7 /* Stack.swift in Sources */,
+				28A87EE41D3D54E600C81F99 /* Recommendation+CoreDataProperties.swift in Sources */,
 				28FC03AA1D2AB03700134676 /* DateHelper.swift in Sources */,
 				28A0101F1D1F0A5E00DD1016 /* DetailTableViewController.swift in Sources */,
 				28A010081D1DF85C00DD1016 /* AppDelegate.swift in Sources */,

@@ -87,7 +87,7 @@ extension ButtonTableViewCell {
         self.recommendation = recommendation
         recommendationTextLabel.text = recommendation.title
         recommenderTextLabel.text = recommendation.recommender
-        updateButton(recommendation.isFavorite!.boolValue)
+        updateButton(recommendation.isFavorite.boolValue)
         updateDoneButton(recommendation.isDone!.boolValue)
 
     }
