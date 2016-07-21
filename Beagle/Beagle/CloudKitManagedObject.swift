@@ -12,14 +12,14 @@ import CloudKit
 
 @objc protocol CloudKitManagedObject {
     
-    var timestamp: NSDate { get set } //this to sort the timeline
+    var timestamp: NSDate { get set }
     var recordIDData: NSData? { get set } //in order to save
     var recordName: String { get set } //
     var recordType: String { get }
     
     var cloudKitRecord: CKRecord? { get } // CloudKit dictionary. Gets data and makes it a cloud kit record.
     
-    init?(record: CKRecord, context: NSManagedObjectContext) //Takes in a CKRecord and turns it into a costum model object.
+    init?(record: CKRecord) //Takes in a CKRecord and turns it into a costum model object.
     
 }
 
@@ -28,7 +28,7 @@ extension CloudKitManagedObject {
     var isSynced: Bool {
         return recordIDData != nil
     }
-    
+
     //Serializes NSData and turns it into a CKRecord. We can find that record through the ID.
     var cloudKitRecordID: CKRecordID? {
         guard let recordIDData = recordIDData,
@@ -55,7 +55,7 @@ extension CloudKitManagedObject {
             print("Unable to save Managed Object Context in \(#function) \nError: \(error)")
         }
     }
-    
+
     //Generates a unique identifier and returns a string.
     func nameForManagedObject() -> String {
         return NSUUID().UUIDString

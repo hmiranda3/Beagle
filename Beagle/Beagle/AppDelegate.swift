@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // types are UIUserNotificationType values
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
         return true
+        
+        
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {

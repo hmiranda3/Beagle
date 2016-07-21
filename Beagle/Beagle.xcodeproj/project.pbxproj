@@ -12,6 +12,7 @@
 		283DB9831D3E9E8F00D7331D /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DB9821D3E9E8F00D7331D /* UserController.swift */; };
 		283DB9851D3E9EBA00D7331D /* CloudKitManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DB9841D3E9EBA00D7331D /* CloudKitManagedObject.swift */; };
 		283DB9881D3EA60500D7331D /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DB9871D3EA60500D7331D /* UserTableViewController.swift */; };
+		2860B5C81D4121B00089D4D8 /* SearchableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2860B5C71D4121B00089D4D8 /* SearchableRecord.swift */; };
 		28A010081D1DF85C00DD1016 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A010071D1DF85C00DD1016 /* AppDelegate.swift */; };
 		28A0100D1D1DF85C00DD1016 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A0100B1D1DF85C00DD1016 /* Main.storyboard */; };
 		28A0100F1D1DF85C00DD1016 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28A0100E1D1DF85C00DD1016 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		283DB9821D3E9E8F00D7331D /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		283DB9841D3E9EBA00D7331D /* CloudKitManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManagedObject.swift; sourceTree = "<group>"; };
 		283DB9871D3EA60500D7331D /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
+		2860B5C71D4121B00089D4D8 /* SearchableRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableRecord.swift; sourceTree = "<group>"; };
 		28A010041D1DF85C00DD1016 /* Beagle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beagle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28A010071D1DF85C00DD1016 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28A0100C1D1DF85C00DD1016 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				283DB9841D3E9EBA00D7331D /* CloudKitManagedObject.swift */,
+				2860B5C71D4121B00089D4D8 /* SearchableRecord.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				28A0101F1D1F0A5E00DD1016 /* DetailTableViewController.swift in Sources */,
 				28A010081D1DF85C00DD1016 /* AppDelegate.swift in Sources */,
 				28A010231D1F183F00DD1016 /* FavoritesTableViewController.swift in Sources */,
+				2860B5C81D4121B00089D4D8 /* SearchableRecord.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,28 +10,17 @@ import Foundation
 import CoreData
 import CloudKit
 
-//struct User {
-//    
-//    let firstName: String
-//    let lastName: String
-//    let canBeNotified: Bool
-//    let didSelect: Bool
-//    var timestamp: NSDate
-//    var recordName: String
-//    var recordIDData: NSData?
-//
-//}
 
 class User: CloudKitManagedObject {
     
-    var username: String?
+    let username: String?
     let firstName: String?
     let lastName: String?
     let canBeNotified: Bool?
     let didSelect: Bool?
-    var timestamp: NSDate
-    var recordName: String
-    var recordIDData: NSData?
+    let timestamp: NSDate
+    let recordName: String
+    let recordIDData: NSData?
     
     static let typeKey = "User"
     
@@ -39,29 +28,36 @@ class User: CloudKitManagedObject {
     //MARK: SearchableRecord Methods
     //Need this
 //    func matchesSearchTerm(searchTerm: String) -> Bool {
-//        return (self.username?.array as? [User])?.filter({$0.matchesSearchTerm(searchTerm)}).count > 0
+//        return (self.username as? [User])?.filter({$0.matchesSearchTerm(searchTerm)}).count > 0
 //    }
     
     //MARK: CloudKitManagedObject methods
-    @objc var recordType: String = "User"
+    var recordType: String = "User"
     
-    @objc var cloudKitRecord: CKRecord? { // Inherits from the extention
-        let recordID = CKRecordID(recordName: recordName)
+    var cloudKitRecord: CKRecord? { // Inherits from the extention
+        let recordID = CKRecordID(recordName: self.recordName)
         let record = CKRecord(recordType: recordType, recordID: recordID)
         
-//        record["timestamp"] = timestamp // These keys "whatever" are from the CLoudKit documentation
-//        record["photoData"] = CKAsset(fileURL: temporaryPhotoUrl)
+        record["username"] = username
+        record["firsName"] = firstName
+        record["lastName"] = lastName
+        record["canBeNotified"] = canBeNotified
+        record["didSelect"] = didSelect
+        
         return record
     }
     
     //Dont know what's going on here.
-    init?(record: CKRecord, username: String, firstName: String) {
+    required init?(record: CKRecord, username: String, firstName: String, lastName: String, canBeNotified: Bool, didSelect: Bool) {
         guard let timestamp = record.creationDate else { fatalError() }
         
         self.username = username
         self.firstName = firstName
+        self.lastName = lastName
+        self.canBeNotified = canBeNotified
+        self.didSelect = didSelect
         self.recordIDData = NSKeyedArchiver.archivedDataWithRootObject(record.recordID)
-        self.recordName = nameForManagedObject()
+        self.recordName = record.recordID.recordName
         self.timestamp = timestamp
     }
     

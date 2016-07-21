@@ -61,26 +61,11 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         categoryTextfield.inputView = categoryPicker
         alertTextfield.inputView = datePicker
         alertTextfield.inputAccessoryView = customView
+        detailTextfield.inputAccessoryView = customView
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DetailTableViewController.tap(_:)))
         view.addGestureRecognizer(tapGesture)
         
-        
-        //Detail image input
-        
-        let detailCustomView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 50))
-        detailCustomView.backgroundColor = UIColor.lightGrayColor()
-        
-        let addImageButton = UIButton(frame: CGRect(x: detailCustomView.frame.width - 105, y: 0, width: 100, height: 50))
-        addImageButton.setTitle("Add Image", forState: .Normal)
-    
-        detailCustomView.addSubview(addImageButton)
-        detailTextfield.inputAccessoryView = detailCustomView
-        
-        
-        
-        
-    
     }
     
     // MARK: - Empty Required Text Field Handling
@@ -134,6 +119,7 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     func dismissPicker() {
         categoryTextfield.resignFirstResponder()
         alertTextfield.resignFirstResponder()
+        detailTextfield.resignFirstResponder()
     }
     
     
@@ -168,12 +154,16 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
             navigationController?.popViewControllerAnimated(true)
         }
         
+        guard let recTitle = recommendationTextfield.text else { return }
         let notification = UILocalNotification()
         notification.fireDate = datePicker.date
-        notification.alertBody = "You have a Recommendation to look at!"
-        notification.alertAction = "Check it Out!"
+        notification.alertBody = "Remember recommendation: \(recTitle)!"
+        notification.alertAction = "open Beagle!"
         notification.soundName = UILocalNotificationDefaultSoundName
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+
+        
+        
     }
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {
