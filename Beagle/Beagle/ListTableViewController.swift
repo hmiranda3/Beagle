@@ -41,18 +41,7 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
 //        title = recommendation.title
 //    }
     
-    // MARK: - Actions
-    
-   
-    @IBAction func newButtonTapped(sender: AnyObject) {
 
-    }
-
-    
-    @IBAction func favoritesButtonTapped(sender: AnyObject) {
-        
-    }
-    
     
     // MARK: - Table view data source
     

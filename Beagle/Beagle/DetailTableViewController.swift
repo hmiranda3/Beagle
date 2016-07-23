@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 import SafariServices
 
 
@@ -102,6 +103,18 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
 
     }
     
+    // MARK: - Alert Notifications
+    
+    func presentAlert() {
+        guard let recTitle = recommendationTextfield.text else { return }
+        let notification = UILocalNotification()
+        notification.fireDate = datePicker.date
+        notification.alertBody = "Remember recommendation: \(recTitle)!"
+        notification.alertAction = "open Beagle!"
+        notification.soundName = UILocalNotificationDefaultSoundName
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
     
     
     // MARK: - To dismiss keyboards.
@@ -136,6 +149,11 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     
     // MARK: - IBActions
     
+    @IBAction func shareButtonTapped(sender: AnyObject) {
+        shareRecommendation()
+    }
+    
+    
     @IBAction func datePickerValueChanged(sender: UIDatePicker) {
         self.alertTextfield.text = sender.date.stringValue()
         self.alertValue = sender.date
@@ -145,25 +163,16 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     @IBAction func saveButtonTapped(sender: AnyObject) {
         emptyTextfieldAlert()
         if recommendation == nil && recommendationTextfield.text != "" && categoryTextfield.text != "" {
+            presentAlert()
             emptyTextfieldAlert()
             createRecommendation()
             navigationController?.popViewControllerAnimated(true)
         } else if recommendationTextfield.text != "" && categoryTextfield.text != "" {
+            presentAlert()
             emptyTextfieldAlert()
             updateRecommendation()
             navigationController?.popViewControllerAnimated(true)
         }
-        
-        guard let recTitle = recommendationTextfield.text else { return }
-        let notification = UILocalNotification()
-        notification.fireDate = datePicker.date
-        notification.alertBody = "Remember recommendation: \(recTitle)!"
-        notification.alertAction = "open Beagle!"
-        notification.soundName = UILocalNotificationDefaultSoundName
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-
-        
-        
     }
     
     @IBAction func cancelButtonTapped(sender: AnyObject) {
@@ -271,6 +280,21 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
             alertTextfield.text = alert.stringValue()
         }
     }
+    
+    func shareRecommendation() {
+       guard let titleText = recommendationTextfield?.text,
+        let categoryText = categoryTextfield?.text else {
+            emptyTextfieldAlert()
+            return
+        }
+        
+        let detailText = detailTextfield?.text
+        let sharableMessage = ("You've recieved a recommendation: \n\(titleText) \nCategory: \(categoryText) \n\(detailText ?? "")")
+        
+        let shareViewController = UIActivityViewController(activityItems: [sharableMessage], applicationActivities: nil)
+        self.presentViewController(shareViewController, animated: true, completion: nil)
+    }
+    
 }
 
 

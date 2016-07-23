@@ -9,8 +9,7 @@
 import Foundation
 import CoreData
 import CloudKit
-
-
+/*
 class User: CloudKitManagedObject {
     
     let username: String?
@@ -32,9 +31,9 @@ class User: CloudKitManagedObject {
 //    }
     
     //MARK: CloudKitManagedObject methods
-    var recordType: String = "User"
+    @objc var recordType: String = "User"
     
-    var cloudKitRecord: CKRecord? { // Inherits from the extention
+    @objc var cloudKitRecord: CKRecord? { // Inherits from the extention
         let recordID = CKRecordID(recordName: self.recordName)
         let record = CKRecord(recordType: recordType, recordID: recordID)
         
@@ -48,7 +47,7 @@ class User: CloudKitManagedObject {
     }
     
     //Dont know what's going on here.
-    required init?(record: CKRecord, username: String, firstName: String, lastName: String, canBeNotified: Bool, didSelect: Bool) {
+    required init?(record: CKRecord, username: String?, firstName: String?, lastName: String?, canBeNotified: Bool?, didSelect: Bool?) {
         guard let timestamp = record.creationDate else { fatalError() }
         
         self.username = username
@@ -62,7 +61,7 @@ class User: CloudKitManagedObject {
     }
     
 }
-
+*/
 
 
 

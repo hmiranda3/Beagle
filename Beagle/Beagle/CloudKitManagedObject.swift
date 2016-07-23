@@ -13,18 +13,18 @@ import CloudKit
 @objc protocol CloudKitManagedObject {
     
     var timestamp: NSDate { get set }
-    var recordIDData: NSData? { get set } //in order to save
-    var recordName: String { get set } //
+    var recordIDData: NSData? { get set }
+    var recordName: String { get set } 
     var recordType: String { get }
     
     var cloudKitRecord: CKRecord? { get } // CloudKit dictionary. Gets data and makes it a cloud kit record.
     
-    init?(record: CKRecord) //Takes in a CKRecord and turns it into a costum model object.
-    
+    init?(record: CKRecord) //Takes in a CKRecord and turns it into a custom model object.
+
 }
 
 extension CloudKitManagedObject {
-    
+
     var isSynced: Bool {
         return recordIDData != nil
     }
@@ -37,7 +37,7 @@ extension CloudKitManagedObject {
         }
         return recordID
     }
-    
+
     //We check to see if there is a recordID and return a CKRecord if there is.
     var cloudKitReference: CKReference? {
         guard let recordID = cloudKitRecordID else {
@@ -45,7 +45,7 @@ extension CloudKitManagedObject {
         }
         return CKReference(recordID: recordID, action: .None)
     }
-    
+
     //Takes in a cloud kit ditionary(CKRecord) and serializes it from a CKRecord to NSData, which can be stored into core data.
     func update(record: CKRecord) {
         self.recordIDData = NSKeyedArchiver.archivedDataWithRootObject(record.recordID)
@@ -60,5 +60,5 @@ extension CloudKitManagedObject {
     func nameForManagedObject() -> String {
         return NSUUID().UUIDString
     }
-    
+
 }
