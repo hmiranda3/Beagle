@@ -25,6 +25,28 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     @IBOutlet weak var recommenderTexfield: UITextField!
     @IBOutlet weak var detailTextfield: UITextView!
     @IBOutlet weak var alertTextfield: UITextField!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    // MARK: - Textfield edits
+    
+    @IBAction func recommendationEdited(sender: AnyObject) {
+        saveButton.enabled = true
+    }
+    
+    @IBAction func categoryEdited(sender: AnyObject) {
+        saveButton.enabled = true
+    }
+    
+    @IBAction func recommenderEdited(sender: AnyObject) {
+        saveButton.enabled = true
+    }
+    
+    @IBAction func alertEdited(sender: AnyObject) {
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        saveButton.enabled = true
+    }
     
     // MARK: - Picker Outlets
     
@@ -36,7 +58,8 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        detailTextfield.delegate = self
+        saveButton.enabled = false
         if let recommendation = recommendation {
             updateWithRecommendation(recommendation)
         }
@@ -66,7 +89,7 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DetailTableViewController.tap(_:)))
         view.addGestureRecognizer(tapGesture)
-        
+                
     }
     
     // MARK: - Empty Required Text Field Handling
@@ -115,8 +138,6 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
-    
-    
     // MARK: - To dismiss keyboards.
     
     func tap(gesture: UITapGestureRecognizer) {
@@ -155,8 +176,12 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     
     
     @IBAction func datePickerValueChanged(sender: UIDatePicker) {
+        saveButton.enabled = true
         self.alertTextfield.text = sender.date.stringValue()
         self.alertValue = sender.date
+        if recommendation?.alert != nil {
+            alertTextfield.text = recommendation?.alert?.stringValue()
+        }
         
     }
     
@@ -175,48 +200,53 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         }
     }
     
+    
     @IBAction func cancelButtonTapped(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
     }
     
     
     // MARK: - Look-Up Button Links
+
+    
+    func searchFormat() -> String {
+        guard let searchElement = recommendationTextfield.text?.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil) else {
+            return ""
+        }
+        return searchElement
+    }
     
     @IBAction func googleTapped(sender: AnyObject) {
-        let url = NSURL(string: "https://google.com")!
+        guard let url = NSURL(string: "https://www.google.com/#q=\(searchFormat())") else { return }
         let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
         self.presentViewController(svc, animated: true, completion: nil)
     }
     
     @IBAction func yelpTapped(sender: AnyObject) {
-        let url = NSURL(string: "http://m.yelp.com")!
+        let url = NSURL(string: "http://www.yelp.com/search?find_desc=\(searchFormat()))")!
         let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
         self.presentViewController(svc, animated: true, completion: nil)
     }
     
     @IBAction func fundangoTapped(sender: AnyObject) {
-        let url = NSURL(string: "https://mobile.fandango.com")!
+        searchFormat()
+        let url = NSURL(string: "https://mobile.fandango.com/search?query=\(searchFormat())")!
         let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
         self.presentViewController(svc, animated: true, completion: nil)
     }
    
-    @IBAction func pinterestTapped(sender: AnyObject) {
-        let url = NSURL(string: "https://www.pinterest.com")!
-        let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
-        self.presentViewController(svc, animated: true, completion: nil)
-    }
-    
     @IBAction func amazonTapped(sender: AnyObject) {
-        let url = NSURL(string: "https://www.amazon.com/178-0768892-8234266")!
+        let url = NSURL(string: "https://www.amazon.com/gp/aw/s/ref=is_s_ss_i_1_5?k=\(searchFormat())")!
         let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
         self.presentViewController(svc, animated: true, completion: nil)
     }
     
     @IBAction func travelocityTapped(sender: AnyObject) {
-        let url = NSURL(string: "https://www.travelocity.com/MobileHotel")!
+        let url = NSURL(string: "https://www.travelocity.com/Hotel-Search?regionID=&hotelId=&age=Select+Child+Age#destination=\(searchFormat())")!
         let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
         self.presentViewController(svc, animated: true, completion: nil)
     }
+    
     // MARK: - Category Picker
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -241,7 +271,7 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         guard let title = recommendationTextfield.text,
             let category = categoryTextfield.text else { return }
         let recommender = recommenderTexfield.text
-        let details = detailTextfield.attributedText
+        let details = detailTextfield.text
         let alert = alertValue
         let isFavorite = false
         let isDone = false
@@ -252,10 +282,11 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     }
     
     func updateRecommendation() {
+        
         guard let title = recommendationTextfield.text,
             let category = categoryTextfield.text else { return }
         let recommender = recommenderTexfield.text
-        let details = detailTextfield.attributedText
+        let details = detailTextfield.text
         let alert = alertValue
         
         
@@ -279,6 +310,10 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         if let alert = recommendation.alert {
             alertTextfield.text = alert.stringValue()
         }
+        
+        if let details = recommendation.details {
+            detailTextfield.text = details
+        }
     }
     
     func shareRecommendation() {
@@ -289,11 +324,24 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         }
         
         let detailText = detailTextfield?.text
-        let sharableMessage = ("You've recieved a recommendation: \n\(titleText) \nCategory: \(categoryText) \n\(detailText ?? "")")
+        let sharableMessage = ("Beagle!: \n\n\(titleText) \n\nCategory: \(categoryText) \n\n\(detailText ?? "")")
         
         let shareViewController = UIActivityViewController(activityItems: [sharableMessage], applicationActivities: nil)
         self.presentViewController(shareViewController, animated: true, completion: nil)
     }
+    
+    // MARK: - Section Header Format
+    
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+    {
+        guard let header = view as? UITableViewHeaderFooterView else {
+            return
+        }
+        header.textLabel?.font = UIFont(name: "Futura", size: 20)
+        header.textLabel?.textColor = UIColor.lightGrayColor()
+        header.tintColor = UIColor.darkGrayColor()
+    }
+
     
 }
 

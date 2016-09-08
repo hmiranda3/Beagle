@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7fu-ec-rzL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7fu-ec-rzL">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Favorites-->
@@ -52,7 +53,7 @@
             </objects>
             <point key="canvasLocation" x="2205" y="1179"/>
         </scene>
-        <!--Beagle-->
+        <!--Beagle!-->
         <scene sceneID="caw-lq-cok">
             <objects>
                 <tableViewController id="SIk-XT-1xh" customClass="ListTableViewController" customModule="Beagle" customModuleProvider="target" sceneMemberID="viewController">
@@ -60,6 +61,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.34204593119999999" green="0.82337982379999997" blue="0.96775377520000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="Tol-sp-Ycj">
+                            <rect key="frame" x="0.0" y="147" width="600" height="492"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3v-sY-EL3">
+                                    <rect key="frame" x="8" y="8" width="584" height="476"/>
+                                    <attributedString key="attributedText">
+                                        <fragment content="Tap the &quot;Add New&quot; Button to create a new recommendation!">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="24" name="Futura-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="Y3v-sY-EL3" firstAttribute="leading" secondItem="Tol-sp-Ycj" secondAttribute="leadingMargin" id="LjW-kn-Wcr"/>
+                                <constraint firstItem="Y3v-sY-EL3" firstAttribute="trailing" secondItem="Tol-sp-Ycj" secondAttribute="trailingMargin" id="P6I-Gg-vbP"/>
+                                <constraint firstItem="Y3v-sY-EL3" firstAttribute="bottom" secondItem="Tol-sp-Ycj" secondAttribute="bottomMargin" id="hkj-7q-SLR"/>
+                                <constraint firstItem="Y3v-sY-EL3" firstAttribute="top" secondItem="Tol-sp-Ycj" secondAttribute="topMargin" id="iRd-76-TkE"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="listCell" rowHeight="55" id="tYA-hx-cha" customClass="ButtonTableViewCell" customModule="Beagle" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="55"/>
@@ -88,7 +116,7 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xH-Bm-QUE">
                                                             <rect key="frame" x="0.0" y="0.0" width="490" height="35"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -97,7 +125,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="5sR-lX-QBg"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -148,7 +176,8 @@
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="93Z-V2-41K"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Beagle" id="nk5-PH-G3k">
+                    <navigationItem key="navigationItem" title="Beagle!" id="nk5-PH-G3k">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="xiu-kF-Pjd"/>
                         <barButtonItem key="rightBarButtonItem" title="Add New" id="4Fg-CH-o00">
                             <connections>
                                 <segue destination="J84-rf-EMh" kind="show" identifier="fromAddSegue" id="cKZ-xA-Rts"/>
@@ -156,12 +185,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="emptyView" destination="Tol-sp-Ycj" id="W7s-PC-AeP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8mH-0u-19H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2205" y="480"/>
         </scene>
-        <!--Beagle-->
+        <!--Beagle!-->
         <scene sceneID="Ten-eA-XhK">
             <objects>
                 <tableViewController id="J84-rf-EMh" customClass="DetailTableViewController" customModule="Beagle" customModuleProvider="target" sceneMemberID="viewController">
@@ -181,8 +213,11 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter recommendation here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="teU-32-5qf">
                                                     <rect key="frame" x="0.0" y="-1" width="600" height="44"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                    <connections>
+                                                        <action selector="recommendationEdited:" destination="J84-rf-EMh" eventType="editingChanged" id="Krh-aC-jAI"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -205,9 +240,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select  a Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oe9-Px-Qmt">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="categoryEdited:" destination="J84-rf-EMh" eventType="editingChanged" id="ZUm-IF-OJn"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -231,8 +269,11 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter recommender's name here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SuE-bM-RY0">
                                                     <rect key="frame" x="0.0" y="-1" width="600" height="44"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                                    <connections>
+                                                        <action selector="recommenderEdited:" destination="J84-rf-EMh" eventType="editingChanged" id="fmj-Sk-lvK"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -245,7 +286,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Set Alert " id="Jsh-Iy-yr3">
+                            <tableViewSection headerTitle="Set Alert " id="Jsh-Iy-yr3" userLabel="Set Alert">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="setAlertCell" id="BJC-dh-7rD">
                                         <rect key="frame" x="0.0" y="344.5" width="600" height="44"/>
@@ -256,8 +297,11 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select a date and time to be reminded..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bWc-tN-p8b">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="alertEdited:" destination="J84-rf-EMh" eventType="editingChanged" id="Qj4-qf-NKN"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -282,7 +326,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wsE-AD-4wB">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
@@ -307,6 +351,8 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fm7-hV-Bf8">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                                    <size key="titleShadowOffset" width="2" height="1"/>
                                                     <state key="normal" title="Google"/>
                                                     <connections>
                                                         <action selector="googleTapped:" destination="J84-rf-EMh" eventType="touchUpInside" id="bq8-7u-zLs"/>
@@ -330,6 +376,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiP-yC-c1G">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                                     <state key="normal" title="Yelp"/>
                                                     <connections>
                                                         <action selector="yelpTapped:" destination="J84-rf-EMh" eventType="touchUpInside" id="FLm-9k-cTH"/>
@@ -353,7 +400,8 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xq-dP-5ez">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
-                                                    <state key="normal" title="Fundango"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                                    <state key="normal" title="Fandango"/>
                                                     <connections>
                                                         <action selector="fundangoTapped:" destination="J84-rf-EMh" eventType="touchUpInside" id="4qX-pc-mMn"/>
                                                     </connections>
@@ -367,38 +415,16 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailsCell" rowHeight="65" id="P2a-I9-O1N">
-                                        <rect key="frame" x="0.0" y="849.5" width="600" height="65"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P2a-I9-O1N" id="V5E-GN-c5A">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHF-JT-Hle">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                                    <state key="normal" title="Pinterest"/>
-                                                    <connections>
-                                                        <action selector="pinterestTapped:" destination="J84-rf-EMh" eventType="touchUpInside" id="gmm-0P-HcX"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="DHF-JT-Hle" firstAttribute="leading" secondItem="V5E-GN-c5A" secondAttribute="leading" id="9NS-yB-vwg"/>
-                                                <constraint firstItem="DHF-JT-Hle" firstAttribute="top" secondItem="V5E-GN-c5A" secondAttribute="top" id="FoO-yj-os8"/>
-                                                <constraint firstAttribute="trailing" secondItem="DHF-JT-Hle" secondAttribute="trailing" id="Hg2-tk-ZRw"/>
-                                                <constraint firstAttribute="bottom" secondItem="DHF-JT-Hle" secondAttribute="bottom" constant="21" id="xob-Gc-Pog"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailsCell" rowHeight="66" id="4HD-RF-I2H">
-                                        <rect key="frame" x="0.0" y="914.5" width="600" height="66"/>
+                                        <rect key="frame" x="0.0" y="849.5" width="600" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4HD-RF-I2H" id="wBW-1O-Nay">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jF-3d-EOQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                                     <state key="normal" title="Amazon"/>
                                                     <connections>
                                                         <action selector="amazonTapped:" destination="J84-rf-EMh" eventType="touchUpInside" id="1Uk-b8-CGo"/>
@@ -408,20 +434,21 @@
                                             <constraints>
                                                 <constraint firstItem="5jF-3d-EOQ" firstAttribute="top" secondItem="wBW-1O-Nay" secondAttribute="top" id="5Hp-2B-pRo"/>
                                                 <constraint firstAttribute="trailing" secondItem="5jF-3d-EOQ" secondAttribute="trailing" id="Jvi-Ap-1UR"/>
-                                                <constraint firstAttribute="bottom" secondItem="5jF-3d-EOQ" secondAttribute="bottom" constant="22" id="qgF-Sk-36W"/>
+                                                <constraint firstAttribute="bottom" secondItem="5jF-3d-EOQ" secondAttribute="bottom" constant="0.5" id="qgF-Sk-36W"/>
                                                 <constraint firstItem="5jF-3d-EOQ" firstAttribute="leading" secondItem="wBW-1O-Nay" secondAttribute="leading" id="vxZ-3j-tjb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailsCell" rowHeight="64" id="PeF-OT-6cx">
-                                        <rect key="frame" x="0.0" y="980.5" width="600" height="64"/>
+                                        <rect key="frame" x="0.0" y="915.5" width="600" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PeF-OT-6cx" id="b50-32-MVf">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="63.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUJ-hM-AOT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                                     <state key="normal" title="Travelocity"/>
                                                     <connections>
                                                         <action selector="travelocityTapped:" destination="J84-rf-EMh" eventType="touchUpInside" id="RzK-fi-jOr"/>
@@ -431,7 +458,7 @@
                                             <constraints>
                                                 <constraint firstItem="OUJ-hM-AOT" firstAttribute="top" secondItem="b50-32-MVf" secondAttribute="top" id="66x-cq-IYY"/>
                                                 <constraint firstItem="OUJ-hM-AOT" firstAttribute="leading" secondItem="b50-32-MVf" secondAttribute="leading" id="9cg-0K-9nZ"/>
-                                                <constraint firstAttribute="bottom" secondItem="OUJ-hM-AOT" secondAttribute="bottom" constant="20" id="a0w-4G-MO1"/>
+                                                <constraint firstAttribute="bottom" secondItem="OUJ-hM-AOT" secondAttribute="bottom" constant="-1.5" id="a0w-4G-MO1"/>
                                                 <constraint firstAttribute="trailing" secondItem="OUJ-hM-AOT" secondAttribute="trailing" id="bVs-Dg-El7"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -459,7 +486,7 @@
                         </barButtonItem>
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="UzU-po-wc7"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Beagle" id="ZLd-eA-Mn9">
+                    <navigationItem key="navigationItem" title="Beagle!" id="ZLd-eA-Mn9">
                         <barButtonItem key="rightBarButtonItem" title="Share" id="EVg-ZX-6Vf">
                             <connections>
                                 <action selector="shareButtonTapped:" destination="J84-rf-EMh" id="cmx-Ct-0UO"/>
@@ -475,6 +502,7 @@
                         <outlet property="detailTextfield" destination="wsE-AD-4wB" id="Um4-Je-r7N"/>
                         <outlet property="recommendationTextfield" destination="teU-32-5qf" id="VJ3-Cg-wQH"/>
                         <outlet property="recommenderTexfield" destination="SuE-bM-RY0" id="fKs-HI-x7R"/>
+                        <outlet property="saveButton" destination="D7z-Lq-VAQ" id="H2g-HT-WSK"/>
                     </connections>
                 </tableViewController>
                 <pickerView contentMode="scaleToFill" id="Vj4-eL-qiZ">
@@ -503,86 +531,6 @@
                 </datePicker>
             </objects>
             <point key="canvasLocation" x="2967" y="480"/>
-        </scene>
-        <!--Table View Controller-->
-        <scene sceneID="6pl-aC-Mbn">
-            <objects>
-                <tableViewController id="K9x-vd-QzQ" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="odV-2a-I1u">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Enter user's first and last name... " id="ioa-c7-ihk">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="70" id="3Xs-uy-OpE">
-                                <rect key="frame" x="0.0" y="72" width="600" height="70"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Xs-uy-OpE" id="psg-BX-1EZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="YCY-mN-nHq">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="rDJ-w4-BIm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="530" height="70"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qv0-fv-ebG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="530" height="40"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="40" id="qtM-7G-8KA"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wdd-9g-ShW">
-                                                            <rect key="frame" x="0.0" y="40" width="530" height="30"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hMw-UZ-mOM">
-                                                    <rect key="frame" x="530" y="0.0" width="70" height="70"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="70" id="3OB-WN-rym"/>
-                                                        <constraint firstAttribute="width" constant="70" id="A5C-TD-H7o"/>
-                                                    </constraints>
-                                                    <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                    <state key="normal" title="Button" image="empty"/>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="YCY-mN-nHq" firstAttribute="leading" secondItem="psg-BX-1EZ" secondAttribute="leading" id="6Wi-rO-aqM"/>
-                                        <constraint firstAttribute="trailing" secondItem="YCY-mN-nHq" secondAttribute="trailing" id="hD0-5X-UOc"/>
-                                        <constraint firstAttribute="bottom" secondItem="YCY-mN-nHq" secondAttribute="bottom" id="prL-93-4bI"/>
-                                        <constraint firstItem="YCY-mN-nHq" firstAttribute="top" secondItem="psg-BX-1EZ" secondAttribute="top" id="tXg-Xo-PCa"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="K9x-vd-QzQ" id="S5E-nw-Q2l"/>
-                            <outlet property="delegate" destination="K9x-vd-QzQ" id="gI5-p2-Xjo"/>
-                        </connections>
-                    </tableView>
-                    <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="FvH-Fb-ac8"/>
-                        <barButtonItem title="Share" id="CJP-VA-biK"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="YV0-k6-Pir"/>
-                    </toolbarItems>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dJJ-vI-keI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3691" y="480"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qvk-DM-qK9">

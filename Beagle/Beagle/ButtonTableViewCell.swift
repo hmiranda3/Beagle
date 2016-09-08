@@ -21,8 +21,6 @@ class ButtonTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        doneButtonTapped(self)
-        // Initialization code
     }
     
     var delegate: ButtonTableViewCellDelegate?
@@ -30,7 +28,6 @@ class ButtonTableViewCell: UITableViewCell {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
     @IBAction func favoriteButtonTapped(sender: AnyObject) {
@@ -56,7 +53,7 @@ class ButtonTableViewCell: UITableViewCell {
     
     func updateDoneButton(isDone: Bool) {
         if isDone == true {
-            doneButton.setImage(UIImage(named: "done"), forState: .Normal)
+            doneButton.setImage(UIImage(named: "plainCheck"), forState: .Normal)
         } else {
             doneButton.setImage(UIImage(named: "empty"), forState: .Normal)
         }
@@ -68,7 +65,7 @@ class ButtonTableViewCell: UITableViewCell {
         RecommendationContoller.sharedController.isDoneValueToggle(self.recommendation!)
         
         if self.recommendation?.isDone == true {
-            doneButton.setImage(UIImage(named: "done"), forState: .Normal)
+            doneButton.setImage(UIImage(named: "plainCheck"), forState: .Normal)
         } else {
             doneButton.setImage(UIImage(named: "empty"), forState: .Normal)
         }
@@ -87,7 +84,7 @@ extension ButtonTableViewCell {
         self.recommendation = recommendation
         recommendationTextLabel.text = recommendation.title
         recommenderTextLabel.text = recommendation.recommender
-        updateButton(recommendation.isFavorite.boolValue)
+        updateButton(recommendation.isFavorite!.boolValue)
         updateDoneButton(recommendation.isDone!.boolValue)
 
     }

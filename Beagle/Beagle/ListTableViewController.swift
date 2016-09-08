@@ -11,11 +11,11 @@ import CoreData
 
 class ListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, ButtonTableViewCellDelegate {
     
+    @IBOutlet weak var emptyView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         RecommendationContoller.sharedController.fetchedResultsController.delegate = self
-
     }
     
     var recommendation: Recommendation?
@@ -27,22 +27,15 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
 
     override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        if RecommendationContoller.sharedController.fetchedResultsController.fetchedObjects?.count != 0 {
+            emptyView.alpha = 0
+            
+        }
         
         tableView.reloadData()
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-//    func updateWithRecommendation(recommendation: Recommendation) {
-//        title = recommendation.title
-//    }
-    
 
-    
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -50,10 +43,10 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
         let sections = RecommendationContoller.sharedController.fetchedResultsController.sections
         
         if sections?.count != 0 {
+            emptyView.alpha = 0
             return sections!.count
             } else {
             if sections?.count == 0 {
-           // TableViewHelper.EmptyMessage("Welcome to Beagle!\n \nTap on the \"Add New\" button to enter a new recommendation!", viewController: self)
             }
             return 0
             
@@ -64,7 +57,7 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
         
         let recommendations = RecommendationContoller.sharedController.fetchedResultsController.sectionIndexTitles
         
-        //TODO: See if there is a more efficient way of doing this. Potentially a switch statement
+        //TODO: See if there is a more efficient way of doing this. 
         switch recommendations[section] {
         case "B":
             return "Books"
@@ -98,6 +91,19 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
 
     }
     
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+    {
+        guard let header = view as? UITableViewHeaderFooterView else {
+            return
+        }
+        header.textLabel?.font = UIFont(name: "Futura", size: 30)
+        header.textLabel?.textColor = UIColor.lightGrayColor()
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sections = RecommendationContoller.sharedController.fetchedResultsController.sections else {
         return 0
@@ -123,9 +129,7 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
      }
      
     
-    
-     // Override to support conditional editing of the table view.
-     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
      }
     
@@ -135,7 +139,6 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
         
     }
     
-    // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             guard let recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation else {return}
@@ -183,27 +186,9 @@ class ListTableViewController: UITableViewController, NSFetchedResultsController
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         tableView.endUpdates()
     }
-
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
     
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       let detailVC = segue.destinationViewController as? DetailTableViewController
         if segue.identifier == "toDetailFromCell" {

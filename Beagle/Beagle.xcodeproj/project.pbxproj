@@ -28,7 +28,6 @@
 		28BDCFE81D24315000575AD7 /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDCFE61D24315000575AD7 /* Recommendation.swift */; };
 		28F5F8BE1D3019E60076A730 /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F5F8BD1D3019E60076A730 /* ButtonTableViewCell.swift */; };
 		28FC03AA1D2AB03700134676 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FC03A91D2AB03700134676 /* DateHelper.swift */; };
-		28FC03AC1D2C164300134676 /* WelcomeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FC03AB1D2C164300134676 /* WelcomeMessage.swift */; };
 		28FC03AE1D2C250000134676 /* RecommendationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FC03AD1D2C250000134676 /* RecommendationController.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +56,6 @@
 		28BDCFE61D24315000575AD7 /* Recommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
 		28F5F8BD1D3019E60076A730 /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 		28FC03A91D2AB03700134676 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
-		28FC03AB1D2C164300134676 /* WelcomeMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeMessage.swift; sourceTree = "<group>"; };
 		28FC03AD1D2C250000134676 /* RecommendationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				28A87EE31D3D54E600C81F99 /* Recommendation+CoreDataProperties.swift */,
-				28FC03AB1D2C164300134676 /* WelcomeMessage.swift */,
 				28BDCFBF1D23330C00575AD7 /* Recommendation.xcdatamodeld */,
 				28BDCFE61D24315000575AD7 /* Recommendation.swift */,
 				28FC03A91D2AB03700134676 /* DateHelper.swift */,
@@ -255,7 +252,6 @@
 				28A87EE61D3D7F9B00C81F99 /* CloudKitManager.swift in Sources */,
 				28BC25F91D36FC8700F76579 /* FavoriteController.swift in Sources */,
 				28A010211D1F0B3700DD1016 /* ListTableViewController.swift in Sources */,
-				28FC03AC1D2C164300134676 /* WelcomeMessage.swift in Sources */,
 				283DB9881D3EA60500D7331D /* UserTableViewController.swift in Sources */,
 				283DB9811D3E9E8200D7331D /* User.swift in Sources */,
 				28BDCFBD1D232D6100575AD7 /* Stack.swift in Sources */,
