@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 
 class FavoritesTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+    
+    @IBOutlet weak var backButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,30 +24,48 @@ class FavoritesTableViewController: UITableViewController, NSFetchedResultsContr
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "unwindToHome", sender: self)
+    }
+   
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
 
         return 1
     }
     
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
 
         return nil
         
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RecommendationContoller.sharedController.getFavoriteRecommendations().count
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let favCount = RecommendationContoller.sharedController.getFavoriteRecommendations().count
+        if favCount == 0 {
+            let imageName = "emptyFavorites"
+            let image = UIImage(named: imageName)
+            let emptyImageView = UIImageView(image: image!)
+            emptyImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
+            tableView.backgroundView = emptyImageView
+            tableView.separatorStyle = .none
+        } else {
+            tableView.separatorStyle = .singleLine
+        }
+
+        
+        return favCount
+        
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("favoriteListCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteListCell", for: indexPath)
         let recommendations = RecommendationContoller.sharedController.getFavoriteRecommendations()
-        let recommendation = recommendations[indexPath.row]
+        let recommendation = recommendations[(indexPath as NSIndexPath).row]
         
     
         cell.textLabel?.text = recommendation.title
@@ -56,11 +76,11 @@ class FavoritesTableViewController: UITableViewController, NSFetchedResultsContr
 
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let detailVC = segue.destinationViewController as? DetailTableViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailVC = segue.destination as? DetailTableViewController
         if segue.identifier == "toDetailFromFavorites" {
-            guard let indexPath = tableView.indexPathForSelectedRow,
-                recommendation = RecommendationContoller.sharedController.fetchedResultsController.objectAtIndexPath(indexPath) as? Recommendation else { return }
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            let recommendation = RecommendationContoller.sharedController.fetchedResultsController.object(at: indexPath)
             detailVC?.recommendation = recommendation
         }
     }

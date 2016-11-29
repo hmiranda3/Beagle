@@ -13,10 +13,10 @@ class FavoriteController {
     
     static let sharedController = FavoriteController()
 
-    let favoriteFetchedResultsController: NSFetchedResultsController
+    let favoriteFetchedResultsController: NSFetchedResultsController<Recommendation>
 
     init () {
-        let favoriteRequest  = NSFetchRequest(entityName: "Recommendation")
+        let favoriteRequest = NSFetchRequest<Recommendation>(entityName: "Recommendation")
         let favoriteCategorySortDescriptor = NSSortDescriptor(key: "category", ascending: true)
         favoriteRequest.sortDescriptors = [favoriteCategorySortDescriptor]
         let predicate = NSPredicate(format: "isFavorite == 1")

@@ -25,61 +25,61 @@ class ButtonTableViewCell: UITableViewCell {
     
     var delegate: ButtonTableViewCellDelegate?
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
     }
     
-    @IBAction func favoriteButtonTapped(sender: AnyObject) {
+    @IBAction func favoriteButtonTapped(_ sender: AnyObject) {
         
         RecommendationContoller.sharedController.isFavoriteValueToggle(self.recommendation!)
         
         if self.recommendation!.isFavorite == true {
-            favoriteButton.setImage(UIImage(named: "redheart"), forState: .Normal)
+            favoriteButton.setImage(UIImage(named: "redheart"), for: UIControlState())
         } else {
-            favoriteButton.setImage(UIImage(named: "emptyheart"), forState: .Normal)
+            favoriteButton.setImage(UIImage(named: "emptyheart"), for: UIControlState())
         }
     }
     
-    func updateButton(isFavorite: Bool) {
+    func updateButton(_ isFavorite: Bool) {
         
         if isFavorite == true {
-            favoriteButton.setImage(UIImage(named: "redheart"), forState: .Normal)
+            favoriteButton.setImage(UIImage(named: "redheart"), for: UIControlState())
         } else {
-            favoriteButton.setImage(UIImage(named: "emptyheart"), forState: .Normal)
+            favoriteButton.setImage(UIImage(named: "emptyheart"), for: UIControlState())
         }
         
     }
     
-    func updateDoneButton(isDone: Bool) {
+    func updateDoneButton(_ isDone: Bool) {
         if isDone == true {
-            doneButton.setImage(UIImage(named: "plainCheck"), forState: .Normal)
+            doneButton.setImage(UIImage(named: "plainCheck"), for: UIControlState())
         } else {
-            doneButton.setImage(UIImage(named: "empty"), forState: .Normal)
+            doneButton.setImage(UIImage(named: "empty"), for: UIControlState())
         }
     }
 
 
-    @IBAction func doneButtonTapped(sender: AnyObject) {
+    @IBAction func doneButtonTapped(_ sender: AnyObject) {
         
         RecommendationContoller.sharedController.isDoneValueToggle(self.recommendation!)
         
         if self.recommendation?.isDone == true {
-            doneButton.setImage(UIImage(named: "plainCheck"), forState: .Normal)
+            doneButton.setImage(UIImage(named: "plainCheck"), for: UIControlState())
         } else {
-            doneButton.setImage(UIImage(named: "empty"), forState: .Normal)
+            doneButton.setImage(UIImage(named: "empty"), for: UIControlState())
         }
     }
 }
 
 protocol ButtonTableViewCellDelegate {
     
-    func favoriteButtonTapped(sender: ButtonTableViewCell)
+    func favoriteButtonTapped(_ sender: ButtonTableViewCell)
 }
 
 extension ButtonTableViewCell {
     
-    func updateWithRecommendation(recommendation: Recommendation) {
+    func updateWithRecommendation(_ recommendation: Recommendation) {
         
         self.recommendation = recommendation
         recommendationTextLabel.text = recommendation.title

@@ -15,7 +15,7 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     
     var categoryArray = ["Food", "Books", "Travel", "Shows & Movies", "Entertainment", "Arts & Crafts", "Music", "Games & Apps", "Lifestyle & Health", "Other"]
     
-    var alertValue: NSDate?
+    var alertValue: Date?
     var recommendation: Recommendation?
     
     // MARK: - IBOutlets
@@ -29,23 +29,23 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     
     // MARK: - Textfield edits
     
-    @IBAction func recommendationEdited(sender: AnyObject) {
-        saveButton.enabled = true
+    @IBAction func recommendationEdited(_ sender: AnyObject) {
+        saveButton.isEnabled = true
     }
     
-    @IBAction func categoryEdited(sender: AnyObject) {
-        saveButton.enabled = true
+    @IBAction func categoryEdited(_ sender: AnyObject) {
+        saveButton.isEnabled = true
     }
     
-    @IBAction func recommenderEdited(sender: AnyObject) {
-        saveButton.enabled = true
+    @IBAction func recommenderEdited(_ sender: AnyObject) {
+        saveButton.isEnabled = true
     }
     
-    @IBAction func alertEdited(sender: AnyObject) {
+    @IBAction func alertEdited(_ sender: AnyObject) {
     }
     
-    func textViewDidChange(textView: UITextView) {
-        saveButton.enabled = true
+    func textViewDidChange(_ textView: UITextView) {
+        saveButton.isEnabled = true
     }
     
     // MARK: - Picker Outlets
@@ -59,7 +59,7 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
         detailTextfield.delegate = self
-        saveButton.enabled = false
+        saveButton.isEnabled = false
         if let recommendation = recommendation {
             updateWithRecommendation(recommendation)
         }
@@ -72,12 +72,12 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         
         
         
-        let customView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 50))
-        customView.backgroundColor = UIColor.lightGrayColor()
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        customView.backgroundColor = UIColor.lightGray
         
         let doneButton = UIButton(frame: CGRect(x: customView.frame.width - 55, y: 0, width: 50, height: 50))
-        doneButton.setTitle("Done", forState: .Normal)
-        doneButton.addTarget(self, action: #selector(dismissPicker), forControlEvents: .TouchUpInside)
+        doneButton.setTitle("Done", for: UIControlState())
+        doneButton.addTarget(self, action: #selector(dismissPicker), for: .touchUpInside)
         
         customView.addSubview(doneButton)
         
@@ -100,27 +100,27 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
             let alert = UIAlertController()
             alert.title = "Your recommendation needs a title!"
             alert.message = "Please fill out the \"Recommendation\" text field in order to create a new entry. Otherwise select cancel."
-            let okAction = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alert.addAction(okAction)
-            presentViewController(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
         }
         
         if (categoryTextfield.text!.isEmpty) {
             let alert = UIAlertController()
             alert.title = "Please select a category!"
             alert.message = "In order to organize your entries, you'll need a category! If you are unsure of the category, select \"Other\"."
-            let okAction = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alert.addAction(okAction)
-            presentViewController(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
         }
         
         if (recommendationTextfield.text!.isEmpty && categoryTextfield.text!.isEmpty) {
             let alert = UIAlertController()
             alert.title = "You havent created a Recommendation!"
             alert.message = "Enter a new recommendation and select a category. If you wish to cancel tap the \"Cancel\" button."
-            let okAction = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+            let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alert.addAction(okAction)
-            presentViewController(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
         }
 
 
@@ -135,18 +135,18 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         notification.alertBody = "Remember recommendation: \(recTitle)!"
         notification.alertAction = "open Beagle!"
         notification.soundName = UILocalNotificationDefaultSoundName
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
     
     // MARK: - To dismiss keyboards.
     
-    func tap(gesture: UITapGestureRecognizer) {
+    func tap(_ gesture: UITapGestureRecognizer) {
         detailTextfield.resignFirstResponder()
     }
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         view.endEditing(true)
-        super.touchesBegan(touches, withEvent: event)
+        super.touchesBegan(touches, with: event)
     }
     
     
@@ -157,12 +157,12 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     }
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         self.view.endEditing(true)
         return
     }
@@ -170,13 +170,13 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
     
     // MARK: - IBActions
     
-    @IBAction func shareButtonTapped(sender: AnyObject) {
+    @IBAction func shareButtonTapped(_ sender: AnyObject) {
         shareRecommendation()
     }
     
     
-    @IBAction func datePickerValueChanged(sender: UIDatePicker) {
-        saveButton.enabled = true
+    @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
+        saveButton.isEnabled = true
         self.alertTextfield.text = sender.date.stringValue()
         self.alertValue = sender.date
         if recommendation?.alert != nil {
@@ -185,24 +185,24 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         
     }
     
-    @IBAction func saveButtonTapped(sender: AnyObject) {
+    @IBAction func saveButtonTapped(_ sender: AnyObject) {
         emptyTextfieldAlert()
         if recommendation == nil && recommendationTextfield.text != "" && categoryTextfield.text != "" {
             presentAlert()
             emptyTextfieldAlert()
             createRecommendation()
-            navigationController?.popViewControllerAnimated(true)
+            _ = navigationController?.popViewController(animated: true)
         } else if recommendationTextfield.text != "" && categoryTextfield.text != "" {
             presentAlert()
             emptyTextfieldAlert()
             updateRecommendation()
-            navigationController?.popViewControllerAnimated(true)
+            _ = navigationController?.popViewController(animated: true)
         }
     }
     
     
-    @IBAction func cancelButtonTapped(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
+    @IBAction func cancelButtonTapped(_ sender: AnyObject) {
+       _ = navigationController?.popViewController(animated: true)
     }
     
     
@@ -210,58 +210,58 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
 
     
     func searchFormat() -> String {
-        guard let searchElement = recommendationTextfield.text?.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil) else {
+        guard let searchElement = recommendationTextfield.text?.replacingOccurrences(of: " ", with: "+", options: NSString.CompareOptions.literal, range: nil) else {
             return ""
         }
         return searchElement
     }
     
-    @IBAction func googleTapped(sender: AnyObject) {
-        guard let url = NSURL(string: "https://www.google.com/#q=\(searchFormat())") else { return }
-        let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
-        self.presentViewController(svc, animated: true, completion: nil)
+    @IBAction func googleTapped(_ sender: AnyObject) {
+        guard let url = URL(string: "https://www.google.com/#q=\(searchFormat())") else { return }
+        let svc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+        self.present(svc, animated: true, completion: nil)
     }
     
-    @IBAction func yelpTapped(sender: AnyObject) {
-        let url = NSURL(string: "http://www.yelp.com/search?find_desc=\(searchFormat()))")!
-        let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
-        self.presentViewController(svc, animated: true, completion: nil)
+    @IBAction func yelpTapped(_ sender: AnyObject) {
+        let url = URL(string: "http://www.yelp.com/search?find_desc=\(searchFormat()))")!
+        let svc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+        self.present(svc, animated: true, completion: nil)
     }
     
-    @IBAction func fundangoTapped(sender: AnyObject) {
-        searchFormat()
-        let url = NSURL(string: "https://mobile.fandango.com/search?query=\(searchFormat())")!
-        let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
-        self.presentViewController(svc, animated: true, completion: nil)
+    @IBAction func fundangoTapped(_ sender: AnyObject) {
+        _ = searchFormat()
+        let url = URL(string: "https://mobile.fandango.com/search?query=\(searchFormat())")!
+        let svc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+        self.present(svc, animated: true, completion: nil)
     }
    
-    @IBAction func amazonTapped(sender: AnyObject) {
-        let url = NSURL(string: "https://www.amazon.com/gp/aw/s/ref=is_s_ss_i_1_5?k=\(searchFormat())")!
-        let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
-        self.presentViewController(svc, animated: true, completion: nil)
+    @IBAction func amazonTapped(_ sender: AnyObject) {
+        let url = URL(string: "https://www.amazon.com/gp/aw/s/ref=is_s_ss_i_1_5?k=\(searchFormat())")!
+        let svc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+        self.present(svc, animated: true, completion: nil)
     }
     
-    @IBAction func travelocityTapped(sender: AnyObject) {
-        let url = NSURL(string: "https://www.travelocity.com/Hotel-Search?regionID=&hotelId=&age=Select+Child+Age#destination=\(searchFormat())")!
-        let svc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
-        self.presentViewController(svc, animated: true, completion: nil)
+    @IBAction func travelocityTapped(_ sender: AnyObject) {
+        let url = URL(string: "https://www.travelocity.com/Hotel-Search?regionID=&hotelId=&age=Select+Child+Age#destination=\(searchFormat())")!
+        let svc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+        self.present(svc, animated: true, completion: nil)
     }
     
     // MARK: - Category Picker
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return categoryArray.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return categoryArray[row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         categoryTextfield.text = categoryArray[row]
     }
     
@@ -295,7 +295,7 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         }
     }
     
-    func updateWithRecommendation(recommendation: Recommendation) {
+    func updateWithRecommendation(_ recommendation: Recommendation) {
         self.recommendation = recommendation
         
         title = recommendation.title
@@ -327,19 +327,19 @@ class DetailTableViewController: UITableViewController, UIPickerViewDataSource, 
         let sharableMessage = ("Beagle!: \n\n\(titleText) \n\nCategory: \(categoryText) \n\n\(detailText ?? "")")
         
         let shareViewController = UIActivityViewController(activityItems: [sharableMessage], applicationActivities: nil)
-        self.presentViewController(shareViewController, animated: true, completion: nil)
+        self.present(shareViewController, animated: true, completion: nil)
     }
     
     // MARK: - Section Header Format
     
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
     {
         guard let header = view as? UITableViewHeaderFooterView else {
             return
         }
         header.textLabel?.font = UIFont(name: "Futura", size: 20)
-        header.textLabel?.textColor = UIColor.lightGrayColor()
-        header.tintColor = UIColor.darkGrayColor()
+        header.textLabel?.textColor = UIColor.lightGray
+        header.tintColor = UIColor.darkGray
     }
 
     

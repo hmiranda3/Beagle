@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28147A011DE29BB20029D468 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28147A001DE29BB20029D468 /* HomeViewController.swift */; };
 		2814EF531D3FC26E00C671B8 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2814EF521D3FC26E00C671B8 /* CloudKit.framework */; };
-		283DB9811D3E9E8200D7331D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DB9801D3E9E8200D7331D /* User.swift */; };
 		283DB9831D3E9E8F00D7331D /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DB9821D3E9E8F00D7331D /* UserController.swift */; };
-		283DB9851D3E9EBA00D7331D /* CloudKitManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DB9841D3E9EBA00D7331D /* CloudKitManagedObject.swift */; };
 		283DB9881D3EA60500D7331D /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283DB9871D3EA60500D7331D /* UserTableViewController.swift */; };
+		2851D4071DE3BF9D00E4FFFE /* EmptyTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2851D4061DE3BF9D00E4FFFE /* EmptyTable.swift */; };
 		2860B5C81D4121B00089D4D8 /* SearchableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2860B5C71D4121B00089D4D8 /* SearchableRecord.swift */; };
 		28A010081D1DF85C00DD1016 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A010071D1DF85C00DD1016 /* AppDelegate.swift */; };
 		28A0100D1D1DF85C00DD1016 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28A0100B1D1DF85C00DD1016 /* Main.storyboard */; };
@@ -21,7 +21,6 @@
 		28A010211D1F0B3700DD1016 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A010201D1F0B3700DD1016 /* ListTableViewController.swift */; };
 		28A010231D1F183F00DD1016 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A010221D1F183F00DD1016 /* FavoritesTableViewController.swift */; };
 		28A87EE41D3D54E600C81F99 /* Recommendation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A87EE31D3D54E600C81F99 /* Recommendation+CoreDataProperties.swift */; };
-		28A87EE61D3D7F9B00C81F99 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A87EE51D3D7F9B00C81F99 /* CloudKitManager.swift */; };
 		28BC25F91D36FC8700F76579 /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BC25F81D36FC8700F76579 /* FavoriteController.swift */; };
 		28BDCFBD1D232D6100575AD7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDCFBC1D232D6100575AD7 /* Stack.swift */; };
 		28BDCFC11D23330C00575AD7 /* Recommendation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28BDCFBF1D23330C00575AD7 /* Recommendation.xcdatamodeld */; };
@@ -29,14 +28,15 @@
 		28F5F8BE1D3019E60076A730 /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F5F8BD1D3019E60076A730 /* ButtonTableViewCell.swift */; };
 		28FC03AA1D2AB03700134676 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FC03A91D2AB03700134676 /* DateHelper.swift */; };
 		28FC03AE1D2C250000134676 /* RecommendationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FC03AD1D2C250000134676 /* RecommendationController.swift */; };
+		798EA80F481FE2E6F6DCF7A6 /* Pods_Beagle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D028F2506E55F5E522A8FE /* Pods_Beagle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28147A001DE29BB20029D468 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2814EF521D3FC26E00C671B8 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		283DB9801D3E9E8200D7331D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		283DB9821D3E9E8F00D7331D /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
-		283DB9841D3E9EBA00D7331D /* CloudKitManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManagedObject.swift; sourceTree = "<group>"; };
 		283DB9871D3EA60500D7331D /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
+		2851D4061DE3BF9D00E4FFFE /* EmptyTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyTable.swift; sourceTree = "<group>"; };
 		2860B5C71D4121B00089D4D8 /* SearchableRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableRecord.swift; sourceTree = "<group>"; };
 		28A010041D1DF85C00DD1016 /* Beagle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beagle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28A010071D1DF85C00DD1016 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,7 +49,6 @@
 		28A010201D1F0B3700DD1016 /* ListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		28A010221D1F183F00DD1016 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		28A87EE31D3D54E600C81F99 /* Recommendation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Recommendation+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		28A87EE51D3D7F9B00C81F99 /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		28BC25F81D36FC8700F76579 /* FavoriteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteController.swift; path = ../FavoriteController.swift; sourceTree = "<group>"; };
 		28BDCFBC1D232D6100575AD7 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		28BDCFC01D23330C00575AD7 /* Recommendation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Recommendation.xcdatamodel; sourceTree = "<group>"; };
@@ -57,6 +56,9 @@
 		28F5F8BD1D3019E60076A730 /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 		28FC03A91D2AB03700134676 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		28FC03AD1D2C250000134676 /* RecommendationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendationController.swift; sourceTree = "<group>"; };
+		54D028F2506E55F5E522A8FE /* Pods_Beagle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beagle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CEAF169BCDDCD368A1204FC /* Pods-Beagle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beagle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Beagle/Pods-Beagle.debug.xcconfig"; sourceTree = "<group>"; };
+		ADB7DDC398CB7EFFEE3114CF /* Pods-Beagle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beagle.release.xcconfig"; path = "Pods/Target Support Files/Pods-Beagle/Pods-Beagle.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2814EF531D3FC26E00C671B8 /* CloudKit.framework in Frameworks */,
+				798EA80F481FE2E6F6DCF7A6 /* Pods_Beagle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +77,6 @@
 		283DB9861D3E9EC200D7331D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				283DB9841D3E9EBA00D7331D /* CloudKitManagedObject.swift */,
 				2860B5C71D4121B00089D4D8 /* SearchableRecord.swift */,
 			);
 			name = Protocols;
@@ -86,6 +88,8 @@
 				2814EF521D3FC26E00C671B8 /* CloudKit.framework */,
 				28A010061D1DF85C00DD1016 /* Beagle */,
 				28A010051D1DF85C00DD1016 /* Products */,
+				68066580E16C5E00BF2F7C3B /* Frameworks */,
+				BD1EE10E68B366E613B610CE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,8 +126,6 @@
 				28BDCFBF1D23330C00575AD7 /* Recommendation.xcdatamodeld */,
 				28BDCFE61D24315000575AD7 /* Recommendation.swift */,
 				28FC03A91D2AB03700134676 /* DateHelper.swift */,
-				28A87EE51D3D7F9B00C81F99 /* CloudKitManager.swift */,
-				283DB9801D3E9E8200D7331D /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -139,6 +141,8 @@
 		28A0101C1D1DF8C000DD1016 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2851D4061DE3BF9D00E4FFFE /* EmptyTable.swift */,
+				28147A001DE29BB20029D468 /* HomeViewController.swift */,
 				283DB9871D3EA60500D7331D /* UserTableViewController.swift */,
 				28F5F8BD1D3019E60076A730 /* ButtonTableViewCell.swift */,
 				28A010221D1F183F00DD1016 /* FavoritesTableViewController.swift */,
@@ -166,6 +170,23 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
+		68066580E16C5E00BF2F7C3B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				54D028F2506E55F5E522A8FE /* Pods_Beagle.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BD1EE10E68B366E613B610CE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7CEAF169BCDDCD368A1204FC /* Pods-Beagle.debug.xcconfig */,
+				ADB7DDC398CB7EFFEE3114CF /* Pods-Beagle.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -173,9 +194,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 28A010161D1DF85C00DD1016 /* Build configuration list for PBXNativeTarget "Beagle" */;
 			buildPhases = (
+				DCFC019240FCC76862E878B6 /* [CP] Check Pods Manifest.lock */,
 				28A010001D1DF85C00DD1016 /* Sources */,
 				28A010011D1DF85C00DD1016 /* Frameworks */,
 				28A010021D1DF85C00DD1016 /* Resources */,
+				E6541527DF072483A0DF0CFF /* [CP] Embed Pods Frameworks */,
+				FFA103F612AFDE218CD6F34F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,12 +217,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "littleJohn's";
 				TargetAttributes = {
 					28A010031D1DF85C00DD1016 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 578KYYBXGE;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.iCloud = {
 								enabled = 1;
@@ -238,6 +263,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		DCFC019240FCC76862E878B6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E6541527DF072483A0DF0CFF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Beagle/Pods-Beagle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFA103F612AFDE218CD6F34F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Beagle/Pods-Beagle-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		28A010001D1DF85C00DD1016 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -247,16 +320,15 @@
 				28BDCFC11D23330C00575AD7 /* Recommendation.xcdatamodeld in Sources */,
 				283DB9831D3E9E8F00D7331D /* UserController.swift in Sources */,
 				28FC03AE1D2C250000134676 /* RecommendationController.swift in Sources */,
-				283DB9851D3E9EBA00D7331D /* CloudKitManagedObject.swift in Sources */,
 				28F5F8BE1D3019E60076A730 /* ButtonTableViewCell.swift in Sources */,
-				28A87EE61D3D7F9B00C81F99 /* CloudKitManager.swift in Sources */,
 				28BC25F91D36FC8700F76579 /* FavoriteController.swift in Sources */,
 				28A010211D1F0B3700DD1016 /* ListTableViewController.swift in Sources */,
+				2851D4071DE3BF9D00E4FFFE /* EmptyTable.swift in Sources */,
 				283DB9881D3EA60500D7331D /* UserTableViewController.swift in Sources */,
-				283DB9811D3E9E8200D7331D /* User.swift in Sources */,
 				28BDCFBD1D232D6100575AD7 /* Stack.swift in Sources */,
 				28A87EE41D3D54E600C81F99 /* Recommendation+CoreDataProperties.swift in Sources */,
 				28FC03AA1D2AB03700134676 /* DateHelper.swift in Sources */,
+				28147A011DE29BB20029D468 /* HomeViewController.swift in Sources */,
 				28A0101F1D1F0A5E00DD1016 /* DetailTableViewController.swift in Sources */,
 				28A010081D1DF85C00DD1016 /* AppDelegate.swift in Sources */,
 				28A010231D1F183F00DD1016 /* FavoritesTableViewController.swift in Sources */,
@@ -300,8 +372,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -346,8 +420,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -366,6 +442,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -373,28 +450,35 @@
 		};
 		28A010171D1DF85C00DD1016 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CEAF169BCDDCD368A1204FC /* Pods-Beagle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Beagle/Beagle.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Beagle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.habib.Beagle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		28A010181D1DF85C00DD1016 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADB7DDC398CB7EFFEE3114CF /* Pods-Beagle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Beagle/Beagle.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Beagle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.habib.Beagle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

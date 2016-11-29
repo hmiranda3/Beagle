@@ -8,16 +8,16 @@
 
 import Foundation
 
-extension NSDate {
+extension Date {
     
     func stringValue() -> String {
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         
-        dateFormatter.timeZone = NSTimeZone.localTimeZone()
-        dateFormatter.dateStyle = .FullStyle
-        dateFormatter.timeStyle = .ShortStyle
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        dateFormatter.dateStyle = .full
+        dateFormatter.timeStyle = .short
         
-        return dateFormatter.stringFromDate(self)
+        return dateFormatter.string(from: self)
     }
     
 }

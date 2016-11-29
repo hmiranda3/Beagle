@@ -2,8 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "check_mark_u2713_icon_256x256.png",
+      "filename" : "ftpatch.png",
       "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

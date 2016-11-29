@@ -14,12 +14,12 @@ class RecommendationContoller {
     
     static let sharedController = RecommendationContoller()
     
-    let fetchedResultsController: NSFetchedResultsController
+    let fetchedResultsController: NSFetchedResultsController<Recommendation>
     
     var recommendation: Recommendation?
     
     init() {
-        let request  = NSFetchRequest(entityName: "Recommendation")
+        let request = NSFetchRequest<Recommendation>(entityName: "Recommendation")
         let categorySortDescriptor = NSSortDescriptor(key: "category", ascending: true)
         request.sortDescriptors = [categorySortDescriptor]
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: Stack.sharedStack.managedObjectContext, sectionNameKeyPath: "category", cacheName: nil)
@@ -30,16 +30,16 @@ class RecommendationContoller {
         }
         
     }
-    
+
     func getFavoriteRecommendations() -> [Recommendation] {
         
-        let request = NSFetchRequest(entityName: "Recommendation")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Recommendation")
         let predicate = NSPredicate(format: "isFavorite == 1")
         request.predicate = predicate
         
         var recommendations: [Recommendation] = []
         do {
-            recommendations = try Stack.sharedStack.managedObjectContext.executeFetchRequest(request) as? [Recommendation] ?? []
+            recommendations = try Stack.sharedStack.managedObjectContext.fetch(request) as? [Recommendation] ?? []
             
         } catch let error as NSError {
             print("Error fetching favorited Recommendations: \(error.localizedDescription) --> \(#function)")
@@ -49,7 +49,7 @@ class RecommendationContoller {
     }
     // MARK: - Functionality
     
-    func addRecommendation(title: String, category: String, recommender: String?, details: String?, alert: NSDate?, isFavorite: Bool, isDone: Bool) {
+    func addRecommendation(_ title: String, category: String, recommender: String?, details: String?, alert: Date?, isFavorite: Bool, isDone: Bool) {
         let recommendation = Recommendation(title: title, recommender: recommender, details: details, alert: alert, isFavorite: isFavorite, category: category, isDone: isDone)
         if (recommendation.category == "") {
             
@@ -60,12 +60,12 @@ class RecommendationContoller {
         saveToPersistentStorage()
     }
     
-    func removeRecommendation(recommendation: Recommendation) {
-        recommendation.managedObjectContext?.deleteObject(recommendation)
+    func removeRecommendation(_ recommendation: Recommendation) {
+        recommendation.managedObjectContext?.delete(recommendation)
         saveToPersistentStorage()
     }
     
-    func updateRecommendation(recommendation: Recommendation, title: String, category: String, recommender: String?, details: String?, alert: NSDate?) {
+    func updateRecommendation(_ recommendation: Recommendation, title: String, category: String, recommender: String?, details: String?, alert: Date?) {
         
         recommendation.title = title
         recommendation.recommender = recommender
@@ -75,24 +75,20 @@ class RecommendationContoller {
         saveToPersistentStorage()
     }
     
-    func isFavoriteValueToggle(recommendation: Recommendation) {
+    func isFavoriteValueToggle(_ recommendation: Recommendation) {
         if recommendation.isFavorite == false {
             recommendation.isFavorite = true
-            print(recommendation.isFavorite)
         } else {
             recommendation.isFavorite = false
-            print(recommendation.isFavorite)
         }
         saveToPersistentStorage()
     }
     
-    func isDoneValueToggle(recommendation: Recommendation) {
+    func isDoneValueToggle(_ recommendation: Recommendation) {
         if recommendation.isDone == false {
             recommendation.isDone = true
-            print(recommendation.isDone)
         } else {
             recommendation.isDone = false
-            print(recommendation.isDone)
         }
         saveToPersistentStorage()
     }
